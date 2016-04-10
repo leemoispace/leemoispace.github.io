@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>[建站记录]3.自动部署 | leemoispace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="git hook 和fabric的使用,实现自动化部署.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[建站记录]3.自动部署">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/建站记录-3-自动部署/index.html">
+<meta property="og:site_name" content="leemoispace">
+<meta property="og:description" content="git hook 和fabric的使用,实现自动化部署.">
+<meta property="og:updated_time" content="2016-04-09T22:44:57.914Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[建站记录]3.自动部署">
+<meta name="twitter:description" content="git hook 和fabric的使用,实现自动化部署.">
+  
+    <link rel="alternative" href="/atom.xml" title="leemoispace" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/image/lry.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">leemoispace</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/life">随笔</a></li>
+				        
+							<li><a href="/categories/tech">技术笔记</a></li>
+				        
+							<li><a href="/categories/opinion">发声</a></li>
+				        
+							<li><a href="/categories/read&watch">观读</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/leemoispace" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/leemoispace" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/leemoispace@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/vps/" style="font-size: 20px;">vps</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">leemoispace</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/image/lry.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">leemoispace</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/life">随笔</a></li>
+		        
+					<li><a href="/categories/tech">技术笔记</a></li>
+		        
+					<li><a href="/categories/opinion">发声</a></li>
+		        
+					<li><a href="/categories/read&watch">观读</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/leemoispace" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/leemoispace" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/leemoispace@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-建站记录-3-自动部署" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/09/建站记录-3-自动部署/" class="article-date">
+  	<time datetime="2016-04-09T16:12:07.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [建站记录]3.自动部署
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fabric/">Fabric</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hook/">hook</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>git hook 和fabric的使用,实现自动化部署.</p>
+<a id="more"></a>
+<h3 id="Git-hook实现项目部署自动化"><a href="#Git-hook实现项目部署自动化" class="headerlink" title="Git hook实现项目部署自动化"></a>Git hook实现项目部署自动化</h3><p>接下来设置git hook,实现我们本地push到repo后git自动部署到VPS.<br>其实就是自己搭建一个私人的github服务~<br>安装git,建立bare仓库,bare意思是文件夹里没有源代码,只是用于版本控制:</p>
+<pre><code>$ sudo apt-get install -y git
+$ sudo mkdir /home/git &amp;&amp; cd /home/git
+$ sudo mkdir flask_project.git &amp;&amp; cd flask_project.git
+$ sudo git init --bare
+</code></pre><p>小贴士:在shell prompt显示你当前位于哪个分支:<br>加入如下到/etc/profile(所有用户) ~/.bashrc(当前用户) :</p>
+<pre><code>parse_git_branch() {
+    git branch 2&gt; /dev/null | sed -e &apos;/^[^*]/d&apos; -e &apos;s/* \(.*\)/ (\1)/&apos;
+}
+export PS1=&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;
+</code></pre><p>在/home/git/flask_project.git下:</p>
+<pre><code>$ sudo vim hooks/post-receive
+</code></pre><p>写入:</p>
+<pre><code>#!/bin/sh
+GIT_WORK_TREE=/home/www/flask_project git checkout -f
+</code></pre><p>现在每次push都会自动执行一次上面的脚本.推送到vps</p>
+<pre><code>$ sudo chmod +x hooks/post-receive
+</code></pre><p>现在在本地开发机的flask应用根目录,vps相当于github,设置这个ssh路径是容易出错的地方:</p>
+<pre><code>$ git init
+$ git remote add production root@&lt;your_ip_or_domain&gt;:/home/git/flask_project.git
+</code></pre><p>或者对于修改过vps ssh端口号的情况:<br>如在第一篇中设置过ssh别名为vps($vi ~/.ssh/config, 登录vps的用户名为user)</p>
+<pre><code>$ git remote add bandwagon user@vps:home/leroy/git/flask_project.git
+</code></pre><p>如果想修改这个地址直接如下,改里面的url:</p>
+<pre><code>$ vim .git/config
+</code></pre><p>修改,删除再添加,如果只是改名就rename:</p>
+<pre><code>$ git remote -v
+$ git remote rm production
+</code></pre><p>对代码库进行修改后,</p>
+<pre><code>$ git add -A
+$ git commit -am &quot;initial&quot;
+$ git push production master
+或者
+$ git push bandwagon master
+</code></pre><p>就部署完毕了,这时候重启一下应用就上线</p>
+<pre><code>$ sudo supervisorctl restart flask_project
+</code></pre><h3 id="Fabric自动化部署脚本"><a href="#Fabric自动化部署脚本" class="headerlink" title="Fabric自动化部署脚本"></a>Fabric自动化部署脚本</h3><p>把这三篇文章的命令放在一个脚本里面,以后就只用改改脚本即可自动化部署.<br>使用方法:<br><a href="https://www.youtube.com/watch?time_continue=133&amp;v=VmcGuKPpWH8" target="_blank" rel="external">视频演示</a><br>把包含所有这三篇文章修改过的文件的整个文件夹,放到全新装完系统的vps上,一键部署:</p>
+<pre><code>$ fab creatve
+</code></pre><p>如果想通过git推送更改:</p>
+<pre><code>$ fab deploy
+</code></pre><p>如果有问题需要回滚:</p>
+<pre><code>$ fab rollback
+</code></pre><p>下面是fab文件:</p>
+<pre><code>###############
+### imports ###
+###############
+
+from fabric.api import cd, env, lcd, put, prompt, local, sudo
+from fabric.contrib.files import exists
+
+
+##############
+### config ###
+##############
+
+local_app_dir = &apos;./flask_project&apos;
+local_config_dir = &apos;./config&apos;
+
+remote_app_dir = &apos;/home/www&apos;
+remote_git_dir = &apos;/home/git&apos;
+remote_flask_dir = remote_app_dir + &apos;/flask_project&apos;
+remote_nginx_dir = &apos;/etc/nginx/sites-enabled&apos;
+remote_supervisor_dir = &apos;/etc/supervisor/conf.d&apos;
+
+env.hosts = [&apos;add_ip_or_domain&apos;]  # replace with IP address or hostname
+env.user = &apos;newuser&apos;
+# env.password = &apos;blah!&apos;
+
+
+#############
+### tasks ###
+#############
+
+def install_requirements():
+&quot;&quot;&quot; Install required packages. &quot;&quot;&quot;
+sudo(&apos;apt-get update&apos;)
+sudo(&apos;apt-get install -y python&apos;)
+sudo(&apos;apt-get install -y python-pip&apos;)
+sudo(&apos;apt-get install -y python-virtualenv&apos;)
+sudo(&apos;apt-get install -y nginx&apos;)
+sudo(&apos;apt-get install -y gunicorn&apos;)
+sudo(&apos;apt-get install -y supervisor&apos;)
+sudo(&apos;apt-get install -y git&apos;)
+
+
+def install_flask():
+&quot;&quot;&quot;
+1. Create project directories
+2. Create and activate a virtualenv
+3. Copy Flask files to remote host
+&quot;&quot;&quot;
+if exists(remote_app_dir) is False:
+    sudo(&apos;mkdir &apos; + remote_app_dir)
+if exists(remote_flask_dir) is False:
+    sudo(&apos;mkdir &apos; + remote_flask_dir)
+with lcd(local_app_dir):
+    with cd(remote_app_dir):
+        sudo(&apos;virtualenv env&apos;)
+        sudo(&apos;source env/bin/activate&apos;)
+        sudo(&apos;pip install Flask==0.10.1&apos;)
+    with cd(remote_flask_dir):
+        put(&apos;*&apos;, &apos;./&apos;, use_sudo=True)
+
+
+def configure_nginx():
+&quot;&quot;&quot;
+1. Remove default nginx config file
+2. Create new config file
+3. Setup new symbolic link
+4. Copy local config to remote config
+5. Restart nginx
+&quot;&quot;&quot;
+sudo(&apos;/etc/init.d/nginx start&apos;)
+if exists(&apos;/etc/nginx/sites-enabled/default&apos;):
+    sudo(&apos;rm /etc/nginx/sites-enabled/default&apos;)
+if exists(&apos;/etc/nginx/sites-enabled/flask_project&apos;) is False:
+    sudo(&apos;touch /etc/nginx/sites-available/flask_project&apos;)
+    sudo(&apos;ln -s /etc/nginx/sites-available/flask_project&apos; +
+         &apos; /etc/nginx/sites-enabled/flask_project&apos;)
+with lcd(local_config_dir):
+    with cd(remote_nginx_dir):
+        put(&apos;./flask_project&apos;, &apos;./&apos;, use_sudo=True)
+sudo(&apos;/etc/init.d/nginx restart&apos;)
+
+
+def configure_supervisor():
+&quot;&quot;&quot;
+1. Create new supervisor config file
+2. Copy local config to remote config
+3. Register new command
+&quot;&quot;&quot;
+if exists(&apos;/etc/supervisor/conf.d/flask_project.conf&apos;) is False:
+    with lcd(local_config_dir):
+        with cd(remote_supervisor_dir):
+            put(&apos;./flask_project.conf&apos;, &apos;./&apos;, use_sudo=True)
+            sudo(&apos;supervisorctl reread&apos;)
+            sudo(&apos;supervisorctl update&apos;)
+
+
+def configure_git():
+&quot;&quot;&quot;
+1. Setup bare Git repo
+2. Create post-receive hook
+&quot;&quot;&quot;
+if exists(remote_git_dir) is False:
+    sudo(&apos;mkdir &apos; + remote_git_dir)
+    with cd(remote_git_dir):
+        sudo(&apos;mkdir flask_project.git&apos;)
+        with cd(&apos;flask_project.git&apos;):
+            sudo(&apos;git init --bare&apos;)
+            with lcd(local_config_dir):
+                with cd(&apos;hooks&apos;):
+                    put(&apos;./post-receive&apos;, &apos;./&apos;, use_sudo=True)
+                    sudo(&apos;chmod +x post-receive&apos;)
+
+
+def run_app():
+&quot;&quot;&quot; Run the app! &quot;&quot;&quot;
+with cd(remote_flask_dir):
+    sudo(&apos;supervisorctl start flask_project&apos;)
+
+
+def deploy():
+&quot;&quot;&quot;
+1. Copy new Flask files
+2. Restart gunicorn via supervisor
+&quot;&quot;&quot;
+with lcd(local_app_dir):
+    local(&apos;git add -A&apos;)
+    commit_message = prompt(&quot;Commit message?&quot;)
+    local(&apos;git commit -am &quot;{0}&quot;&apos;.format(commit_message))
+    local(&apos;git push production master&apos;)
+    sudo(&apos;supervisorctl restart flask_project&apos;)
+
+
+def rollback():
+&quot;&quot;&quot;
+1. Quick rollback in case of error
+2. Restart gunicorn via supervisor
+&quot;&quot;&quot;
+with lcd(local_app_dir):
+    local(&apos;git revert master  --no-edit&apos;)
+    local(&apos;git push production master&apos;)
+    sudo(&apos;supervisorctl restart flask_project&apos;)
+
+
+def status():
+&quot;&quot;&quot; Is our app live? &quot;&quot;&quot;
+sudo(&apos;supervisorctl status&apos;)
+
+
+def create():
+install_requirements()
+install_flask()
+configure_nginx()
+configure_supervisor()
+configure_git()
+</code></pre><h3 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h3><ul>
+<li>一个staging server作为上线前的测试平台.</li>
+<li>自动单元测试.</li>
+</ul>
+<p>日新又新.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/09/建站记录-2-VPS部署Flask/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[建站记录]2.VPS部署Flask</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="建站记录-3-自动部署" data-title="[建站记录]3.自动部署" data-url="http://yoursite.com/2016/04/09/建站记录-3-自动部署/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 leemoispace
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
