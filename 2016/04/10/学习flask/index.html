@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>学习flask | leemoispace</title>
+  <title>[学习flask]1,整体初步认识 | leemoispace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="flask框架
 WSGI: Werkzeug
@@ -19,7 +19,7 @@ python3.4 pyvenv
 我的目录实操目录(可githook到vps):~/flask/flask_project
 教程源码目录:~/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习flask">
+<meta property="og:title" content="[学习flask]1,整体初步认识">
 <meta property="og:url" content="http://yoursite.com/2016/04/10/学习flask/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="flask框架
@@ -34,9 +34,9 @@ template: jinjia2
 python3.4 pyvenv
 我的目录实操目录(可githook到vps):~/flask/flask_project
 教程源码目录:~/">
-<meta property="og:updated_time" content="2016-04-10T21:43:39.470Z">
+<meta property="og:updated_time" content="2016-04-11T02:52:27.051Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习flask">
+<meta name="twitter:title" content="[学习flask]1,整体初步认识">
 <meta name="twitter:description" content="flask框架
 WSGI: Werkzeug
 web server gateway interface, 把来自客户端的请求发送给flask程序处理
@@ -234,7 +234,7 @@ python3.4 pyvenv
         
   
     <h1 class="article-title" itemprop="name">
-      学习flask
+      [学习flask]1,整体初步认识
     </h1>
   
 
@@ -293,7 +293,32 @@ def user(name):
     app.run(debug=True)
 </code></pre><p>启动之后就一直等待请求并进行响应.</p>
 <p>页码Eng 12,CHS 11</p>
-<p>###</p>
+<h3 id="2-5-请求和相应"><a href="#2-5-请求和相应" class="headerlink" title="2.5 请求和相应"></a>2.5 请求和相应</h3><h4 id="2-5-1-Context-上下文"><a href="#2-5-1-Context-上下文" class="headerlink" title="2.5.1 Context 上下文"></a>2.5.1 Context 上下文</h4><p>Context让一个变量(如一个request)在一个线程thread中作为全局可见变量.需要激活(运行app.app_context())后才可见.</p>
+<p>两种context:</p>
+<ul>
+<li>applicaiton context<ul>
+<li>current_app</li>
+<li>g</li>
+</ul>
+</li>
+<li>request context<ul>
+<li>request</li>
+<li>session</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-5-2-请求调度"><a href="#2-5-2-请求调度" class="headerlink" title="2.5.2 请求调度"></a>2.5.2 请求调度</h4><p>除了routes分配(dispatch)请求由哪个函数处理之外,还可以用app.add_url_rule()</p>
+<p>app.url_map()显示当前路由map<br>主要是处理GET响应</p>
+<h4 id="2-5-3-请求钩子"><a href="#2-5-3-请求钩子" class="headerlink" title="2.5.3 请求钩子"></a>2.5.3 请求钩子</h4><p>在请求的不同阶段自动调用一段代码.<br>用装饰器实现,有四种.</p>
+<p>g context全局变量用来做data的swap缓存区域.</p>
+<h4 id="2-5-4-响应"><a href="#2-5-4-响应" class="headerlink" title="2.5.4 响应"></a>2.5.4 响应</h4><p>view function的返回值作为响应response.<br>响应除了字符串作为html之外,还要包含HTTP status code<br>这就是return的第二个值.</p>
+<p>如果不返回多个值,那么可以返回response对象,用make_response().<br>有时候需要这样来进一步设置响应对象,如设置cookie</p>
+<p>重定向,302 status<br>redirect(url)返回一个response对象.</p>
+<p>abort函数,返回 404</p>
+<h3 id="2-6-flask扩展"><a href="#2-6-flask扩展" class="headerlink" title="2.6 flask扩展"></a>2.6 flask扩展</h3><p>加入一个命令行选项的扩展作为例子.</p>
+<p>加入flask-script扩展使其可以接受命令行选项,而不只是接收脚本中设置的参数.具体用法看对应章节.host参数蛮有用,可以监听除了localhost之外的端口.</p>
+<p>flask扩展都在flask.ext命名空间里</p>
+<p>把程序实例作为参数传给构造函数.</p>
 
       
     </div>
@@ -349,7 +374,7 @@ def user(name):
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="学习flask" data-title="学习flask" data-url="http://yoursite.com/2016/04/10/学习flask/"></div>
+	<div class="ds-thread" data-thread-key="学习flask" data-title="[学习flask]1,整体初步认识" data-url="http://yoursite.com/2016/04/10/学习flask/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
