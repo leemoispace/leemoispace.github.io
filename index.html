@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -113,7 +113,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 20px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 15px;">vps</a>
 					</div>
 				</section>
 				
@@ -185,6 +185,67 @@
 
       <div class="body-wrap">
   
+    <article id="post-学习flask-4-web表单" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/13/学习flask-4-web表单/" class="article-date">
+  	<time datetime="2016-04-13T02:07:05.000Z" itemprop="datePublished">2016-04-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/13/学习flask-4-web表单/">学习flask-4,web表单</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>pip install flask-wtf</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flask/">flask</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-学习flask-3-模板" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -202,7 +263,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/11/学习flask-3-模板/">学习flask_3.模板</a>
+      <a class="article-title" href="/2016/04/11/学习flask-3-模板/">[学习flask]2,模板</a>
     </h1>
   
 
@@ -211,14 +272,123 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="3-1jinjia2"><a href="#3-1jinjia2" class="headerlink" title="3.1jinjia2"></a>3.1jinjia2</h3><p>P21 EN,P19 CHS</p>
+<ul>
+<li>业务逻辑 后台 business logic</li>
+<li>表现逻辑 前端 presentation logic<h4 id="3-1-1-渲染-模板"><a href="#3-1-1-渲染-模板" class="headerlink" title="3.1.1 渲染,模板"></a>3.1.1 渲染,模板</h4>把表现逻辑交给模板处理.</li>
+</ul>
+<p>渲染:用上下文中的值替换占位符</p>
+<p>表现函数调用render_template函数</p>
+<p>模板文件位置/templates</p>
+<h4 id="3-1-2变量"><a href="#3-1-2变量" class="headerlink" title="3.1.2变量"></a>3.1.2变量</h4>
+
+写在模板里的占位符: {{variable}}
+
+
+变量可以是各种类型,list dict object
+
+可以通过filter对变量进行处理, 如{{name|capitalize}},首字母大写. 需要注意safe过滤器,safe处理就是不转义(escape)
+
+filter列表见: jinja builtin-filters
+
+#### 3.1.3 控制语句
+jinja提供的控制渲染过程的语句:
+
+{%if user%}
+{%endif%}
+
+{% for commetn in comments %}
+{%endfor%}
+
+支持宏,类似函数
+
+可以包含include来导入单独文件中的宏
+
+可以定义基模板,然后继承.
+block标签在基模板中定义的部分在用extends继承后可以修改.
+
+{{super()}}获取基模板中定义的内容
+
+### 3.2flask集成bootstrap
+pip install flask-bootstrap
+
+app.py
+
+    from flask.ext.bootstrap import Bootstrap
+    bootstrap=Bootstrap(app)
+
+初始化之后就可以使用包含bootstrap的基模板.
+在html中
+
+    {%extends "bootstrap/base.html"%}
+
+导入基模板.用到的bootstrap的元素到其官网看文档.
+
+base.html定义了很多块,都可以在衍生模板中继承
+
+
+
+### 3.3 自定义404页面
+
+404错误,500错误
+在app.py中:
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'),404
+
+继承(inheritance),DRY,减少重复代码
+
+代码见:/templates/base.html, content部分是一个空的block
+
+然后在/templates/404.html中继承.
+
+在vps上需要设置nginx 使用自己的404页面.
+
+
+
+### 3.4 生成链接
+
+动态路由
+
+url_for() 函数按照url map中保存的信息返回url字符串
+
+生成绝对路径: url_for(page,_external=True)
+
+### 3.5 静态文件
+加入favcon为例:
+
+/templates/base.html
+
+    {% block head%}
+    {{super()}}
+    <link rel="shortcut ico" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-ico">
+    <link rel="icon" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-ico">
+    {% endblock%}
+
+### 3.6 处理时间
+moment.js在浏览器中渲染时间
+
+pip install flask-moment
+
+用到再来.
+
+
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flask/">flask</a></li></ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
 
       
       <div class="clearfix"></div>
@@ -263,7 +433,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="shell-bookmark"><a href="#shell-bookmark" class="headerlink" title="shell bookmark"></a>shell bookmark</h3><p>### </p>
+        <p>记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.</p>
+<h3 id="切换ctrl和caps"><a href="#切换ctrl和caps" class="headerlink" title="切换ctrl和caps"></a>切换ctrl和caps</h3><p>gnome-tweak-tool不管用啊,</p>
+<pre><code>$setxkbmap -option &quot;ctrl:swapcaps&quot;
+</code></pre><h3 id="shell-bookmark"><a href="#shell-bookmark" class="headerlink" title="shell bookmark"></a>shell bookmark</h3><h3 id="shell终端多屏-tmux-terminator"><a href="#shell终端多屏-tmux-terminator" class="headerlink" title="shell终端多屏: tmux terminator"></a>shell终端多屏: tmux terminator</h3><p><a href="http://blog.jobbole.com/87584/" target="_blank" rel="external">http://blog.jobbole.com/87584/</a></p>
+<p>$sudo apt-get install tmux</p>
+<p>$vim ~/.tmux.conf</p>
+<p>启动,直接tmux</p>
+<p>使生效:命令模式（按PREFIX : ，即按下ctrl+b,再输入一个“：”)输入</p>
+<pre><code>source-file ~/.tmux.conf
+</code></pre><p>内容:<br>    #<br>    unbind C-b<br>    set -g prefix C-a</p>
+<pre><code># bind a reload key ctrl+r
+bind R source-file ~/.tmux.conf ; display-message &quot;Config reloaded..&quot;
+
+#vim模式
+# Use vim keybindings in copy mode
+setw -g mode-keys vi
+
+#将窗口分为3个部分，方便编程（一个文本编辑、一个编译运行查看运行结果、一个浏览文件系统）.
+#打开utf8 支持
+set -g status-utf8 on
+setw -g utf8 on
+
+# statusbar 自定义，具体可以查看man 文档，非常详细
+set -g display-time 3000
+set -g status-fg blue
+
+new  -s work # 创建一个叫work的seesion（附带有一个window）
+neww ranger #在当前session再创建一个window运行ranger
+selectw -t 0 # 选择第一window
+splitw -h -p 50 -t 0 # 水平切割第一个pane，百分比是50
+splitw -v -p 50 -t 1 # 垂直切割第二个pane，百分比是50
+selectp -t 0 # 选择第一个pane
+</code></pre><p>添加了新的配置，只需要按下 Ctrl-b r 就可以重新加载配置并使新的配置生效，从而免去了开启一个新的会话</p>
+<p>启动自动进入布局:</p>
+<pre><code>$ alias tmux2work=”tmux attach -t work”
+</code></pre><p>以下功能均要先按Ctrl+A(已经修改过,默认是B)</p>
+<p>分隔</p>
+<ul>
+<li>水平分隔 %</li>
+<li>竖直分隔 “</li>
+<li>移动 方向键</li>
+</ul>
+<p>会话</p>
+<ul>
+<li>$tmux new -s name</li>
+<li>会话列表 s</li>
+</ul>
+<p>窗口</p>
+<ul>
+<li>新建窗口 c</li>
+<li>选择窗口 数字键 n p</li>
+<li>关闭 x</li>
+</ul>
+<p>复制</p>
+<ul>
+<li>[</li>
+<li>复制到系统剪贴板:<a href="https://github.com/tmux-plugins/tmux-yank" target="_blank" rel="external">https://github.com/tmux-plugins/tmux-yank</a></li>
+</ul>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>###</p>
 
       
     </div>

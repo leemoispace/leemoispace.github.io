@@ -6,16 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>linux_tools | leemoispace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="shell bookmark###">
+  <meta name="description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.
+切换ctrl和capsgnome-tweak-tool不管用啊,
+$setxkbmap -option &amp;quot;ctrl:swapcaps&amp;quot;
+shell bookmarkshell终端多屏: tmux terminatorhttp://blog.jobbole.com/87584/
+$sudo apt-ge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux_tools">
 <meta property="og:url" content="http://yoursite.com/2016/04/11/linux-tools/index.html">
 <meta property="og:site_name" content="leemoispace">
-<meta property="og:description" content="shell bookmark###">
-<meta property="og:updated_time" content="2016-04-10T21:04:38.510Z">
+<meta property="og:description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.
+切换ctrl和capsgnome-tweak-tool不管用啊,
+$setxkbmap -option &amp;quot;ctrl:swapcaps&amp;quot;
+shell bookmarkshell终端多屏: tmux terminatorhttp://blog.jobbole.com/87584/
+$sudo apt-ge">
+<meta property="og:updated_time" content="2016-04-12T15:01:11.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux_tools">
-<meta name="twitter:description" content="shell bookmark###">
+<meta name="twitter:description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.
+切换ctrl和capsgnome-tweak-tool不管用啊,
+$setxkbmap -option &amp;quot;ctrl:swapcaps&amp;quot;
+shell bookmarkshell终端多屏: tmux terminatorhttp://blog.jobbole.com/87584/
+$sudo apt-ge">
   
     <link rel="alternative" href="/atom.xml" title="leemoispace" type="application/atom+xml">
   
@@ -71,7 +83,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -114,7 +126,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 20px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 15px;">vps</a>
 					</div>
 				</section>
 				
@@ -221,7 +233,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="shell-bookmark"><a href="#shell-bookmark" class="headerlink" title="shell bookmark"></a>shell bookmark</h3><p>### </p>
+        <p>记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.</p>
+<h3 id="切换ctrl和caps"><a href="#切换ctrl和caps" class="headerlink" title="切换ctrl和caps"></a>切换ctrl和caps</h3><p>gnome-tweak-tool不管用啊,</p>
+<pre><code>$setxkbmap -option &quot;ctrl:swapcaps&quot;
+</code></pre><h3 id="shell-bookmark"><a href="#shell-bookmark" class="headerlink" title="shell bookmark"></a>shell bookmark</h3><h3 id="shell终端多屏-tmux-terminator"><a href="#shell终端多屏-tmux-terminator" class="headerlink" title="shell终端多屏: tmux terminator"></a>shell终端多屏: tmux terminator</h3><p><a href="http://blog.jobbole.com/87584/" target="_blank" rel="external">http://blog.jobbole.com/87584/</a></p>
+<p>$sudo apt-get install tmux</p>
+<p>$vim ~/.tmux.conf</p>
+<p>启动,直接tmux</p>
+<p>使生效:命令模式（按PREFIX : ，即按下ctrl+b,再输入一个“：”)输入</p>
+<pre><code>source-file ~/.tmux.conf
+</code></pre><p>内容:<br>    #<br>    unbind C-b<br>    set -g prefix C-a</p>
+<pre><code># bind a reload key ctrl+r
+bind R source-file ~/.tmux.conf ; display-message &quot;Config reloaded..&quot;
+
+#vim模式
+# Use vim keybindings in copy mode
+setw -g mode-keys vi
+
+#将窗口分为3个部分，方便编程（一个文本编辑、一个编译运行查看运行结果、一个浏览文件系统）.
+#打开utf8 支持
+set -g status-utf8 on
+setw -g utf8 on
+
+# statusbar 自定义，具体可以查看man 文档，非常详细
+set -g display-time 3000
+set -g status-fg blue
+
+new  -s work # 创建一个叫work的seesion（附带有一个window）
+neww ranger #在当前session再创建一个window运行ranger
+selectw -t 0 # 选择第一window
+splitw -h -p 50 -t 0 # 水平切割第一个pane，百分比是50
+splitw -v -p 50 -t 1 # 垂直切割第二个pane，百分比是50
+selectp -t 0 # 选择第一个pane
+</code></pre><p>添加了新的配置，只需要按下 Ctrl-b r 就可以重新加载配置并使新的配置生效，从而免去了开启一个新的会话</p>
+<p>启动自动进入布局:</p>
+<pre><code>$ alias tmux2work=”tmux attach -t work”
+</code></pre><p>以下功能均要先按Ctrl+A(已经修改过,默认是B)</p>
+<p>分隔</p>
+<ul>
+<li>水平分隔 %</li>
+<li>竖直分隔 “</li>
+<li>移动 方向键</li>
+</ul>
+<p>会话</p>
+<ul>
+<li>$tmux new -s name</li>
+<li>会话列表 s</li>
+</ul>
+<p>窗口</p>
+<ul>
+<li>新建窗口 c</li>
+<li>选择窗口 数字键 n p</li>
+<li>关闭 x</li>
+</ul>
+<p>复制</p>
+<ul>
+<li>[</li>
+<li>复制到系统剪贴板:<a href="https://github.com/tmux-plugins/tmux-yank" target="_blank" rel="external">https://github.com/tmux-plugins/tmux-yank</a></li>
+</ul>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>###</p>
 
       
     </div>
@@ -235,7 +305,7 @@
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          学习flask_3.模板
+          [学习flask]2,模板
         
       </div>
     </a>

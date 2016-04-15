@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/09/建站记录-3-自动部署/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="git hook 和fabric的使用,实现自动化部署.">
-<meta property="og:updated_time" content="2016-04-09T22:44:57.914Z">
+<meta property="og:updated_time" content="2016-04-13T01:07:43.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[建站记录]3.自动部署">
 <meta name="twitter:description" content="git hook 和fabric的使用,实现自动化部署.">
@@ -71,7 +71,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 20px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 15px;">vps</a>
 					</div>
 				</section>
 				
@@ -262,7 +262,8 @@ $ git push production master
 $ git push bandwagon master
 </code></pre><p>就部署完毕了,这时候重启一下应用就上线</p>
 <pre><code>$ sudo supervisorctl restart flask_project
-</code></pre><h3 id="Fabric自动化部署脚本"><a href="#Fabric自动化部署脚本" class="headerlink" title="Fabric自动化部署脚本"></a>Fabric自动化部署脚本</h3><p>把这三篇文章的命令放在一个脚本里面,以后就只用改改脚本即可自动化部署.<br>使用方法:<br><a href="https://www.youtube.com/watch?time_continue=133&amp;v=VmcGuKPpWH8" target="_blank" rel="external">视频演示</a><br>把包含所有这三篇文章修改过的文件的整个文件夹,放到全新装完系统的vps上,一键部署:</p>
+</code></pre><p>补充: 如果没有在virtualenv里安装需要的包,推送后部署会错误,需要自己手动去安装一下</p>
+<h3 id="Fabric自动化部署脚本"><a href="#Fabric自动化部署脚本" class="headerlink" title="Fabric自动化部署脚本"></a>Fabric自动化部署脚本</h3><p>把这三篇文章的命令放在一个脚本里面,以后就只用改改脚本即可自动化部署.<br>使用方法:<br><a href="https://www.youtube.com/watch?time_continue=133&amp;v=VmcGuKPpWH8" target="_blank" rel="external">视频演示</a><br>把包含所有这三篇文章修改过的文件的整个文件夹,放到全新装完系统的vps上,一键部署:</p>
 <pre><code>$ fab creatve
 </code></pre><p>如果想通过git推送更改:</p>
 <pre><code>$ fab deploy
