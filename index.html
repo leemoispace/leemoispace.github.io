@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -211,7 +211,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>pip install flask-wtf</p>
+        <a id="more"></a>
+<p>pip install flask-wtf</p>
 
       
     </div>
@@ -280,7 +281,9 @@
 <p>渲染:用上下文中的值替换占位符</p>
 <p>表现函数调用render_template函数</p>
 <p>模板文件位置/templates</p>
-<h4 id="3-1-2变量"><a href="#3-1-2变量" class="headerlink" title="3.1.2变量"></a>3.1.2变量</h4>
+<h4 id="3-1-2变量"><a href="#3-1-2变量" class="headerlink" title="3.1.2变量"></a>3.1.2变量</h4><p>本文用到的jinja语法 hexo无法渲染,需要用包起来
+
+
 
 写在模板里的占位符: {{variable}}
 
@@ -359,20 +362,16 @@ url_for() 函数按照url map中保存的信息返回url字符串
 加入favcon为例:
 
 /templates/base.html
-
+    {% raw %}
     {% block head%}
     {{super()}}
     <link rel="shortcut ico" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-ico">
     <link rel="icon" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-ico">
     {% endblock%}
-
-### 3.6 处理时间
-moment.js在浏览器中渲染时间
-
-pip install flask-moment
-
-用到再来.
-
+    {% endraw %}</p>
+<h3 id="3-6-处理时间"><a href="#3-6-处理时间" class="headerlink" title="3.6 处理时间"></a>3.6 处理时间</h3><p>moment.js在浏览器中渲染时间</p>
+<p>pip install flask-moment</p>
+<p>用到再来.<br></p>
 
       
     </div>
@@ -433,66 +432,7 @@ pip install flask-moment
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.</p>
-<h3 id="切换ctrl和caps"><a href="#切换ctrl和caps" class="headerlink" title="切换ctrl和caps"></a>切换ctrl和caps</h3><p>gnome-tweak-tool不管用啊,</p>
-<pre><code>$setxkbmap -option &quot;ctrl:swapcaps&quot;
-</code></pre><h3 id="shell-bookmark"><a href="#shell-bookmark" class="headerlink" title="shell bookmark"></a>shell bookmark</h3><h3 id="shell终端多屏-tmux-terminator"><a href="#shell终端多屏-tmux-terminator" class="headerlink" title="shell终端多屏: tmux terminator"></a>shell终端多屏: tmux terminator</h3><p><a href="http://blog.jobbole.com/87584/" target="_blank" rel="external">http://blog.jobbole.com/87584/</a></p>
-<p>$sudo apt-get install tmux</p>
-<p>$vim ~/.tmux.conf</p>
-<p>启动,直接tmux</p>
-<p>使生效:命令模式（按PREFIX : ，即按下ctrl+b,再输入一个“：”)输入</p>
-<pre><code>source-file ~/.tmux.conf
-</code></pre><p>内容:<br>    #<br>    unbind C-b<br>    set -g prefix C-a</p>
-<pre><code># bind a reload key ctrl+r
-bind R source-file ~/.tmux.conf ; display-message &quot;Config reloaded..&quot;
-
-#vim模式
-# Use vim keybindings in copy mode
-setw -g mode-keys vi
-
-#将窗口分为3个部分，方便编程（一个文本编辑、一个编译运行查看运行结果、一个浏览文件系统）.
-#打开utf8 支持
-set -g status-utf8 on
-setw -g utf8 on
-
-# statusbar 自定义，具体可以查看man 文档，非常详细
-set -g display-time 3000
-set -g status-fg blue
-
-new  -s work # 创建一个叫work的seesion（附带有一个window）
-neww ranger #在当前session再创建一个window运行ranger
-selectw -t 0 # 选择第一window
-splitw -h -p 50 -t 0 # 水平切割第一个pane，百分比是50
-splitw -v -p 50 -t 1 # 垂直切割第二个pane，百分比是50
-selectp -t 0 # 选择第一个pane
-</code></pre><p>添加了新的配置，只需要按下 Ctrl-b r 就可以重新加载配置并使新的配置生效，从而免去了开启一个新的会话</p>
-<p>启动自动进入布局:</p>
-<pre><code>$ alias tmux2work=”tmux attach -t work”
-</code></pre><p>以下功能均要先按Ctrl+A(已经修改过,默认是B)</p>
-<p>分隔</p>
-<ul>
-<li>水平分隔 %</li>
-<li>竖直分隔 “</li>
-<li>移动 方向键</li>
-</ul>
-<p>会话</p>
-<ul>
-<li>$tmux new -s name</li>
-<li>会话列表 s</li>
-</ul>
-<p>窗口</p>
-<ul>
-<li>新建窗口 c</li>
-<li>选择窗口 数字键 n p</li>
-<li>关闭 x</li>
-</ul>
-<p>复制</p>
-<ul>
-<li>[</li>
-<li>复制到系统剪贴板:<a href="https://github.com/tmux-plugins/tmux-yank" target="_blank" rel="external">https://github.com/tmux-plugins/tmux-yank</a></li>
-</ul>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>###</p>
-
+        <p>记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.<br>
       
     </div>
     
@@ -505,6 +445,10 @@ selectp -t 0 # 选择第一个pane
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/11/linux-tools/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -522,10 +466,10 @@ selectp -t 0 # 选择第一个pane
 
 
   
-    <article id="post-学习flask" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-学习flask-1-2-整体初步认识" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/10/学习flask/" class="article-date">
+      <a href="/2016/04/10/学习flask-1-2-整体初步认识/" class="article-date">
   	<time datetime="2016-04-10T20:44:49.000Z" itemprop="datePublished">2016-04-10</time>
 </a>
     </div>
@@ -539,7 +483,7 @@ selectp -t 0 # 选择第一个pane
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/10/学习flask/">[学习flask]1,整体初步认识</a>
+      <a class="article-title" href="/2016/04/10/学习flask-1-2-整体初步认识/">[学习flask]1,整体初步认识</a>
     </h1>
   
 
@@ -548,7 +492,8 @@ selectp -t 0 # 选择第一个pane
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="flask框架"><a href="#flask框架" class="headerlink" title="flask框架"></a>flask框架</h3><ul>
+        <a id="more"></a>
+<h3 id="flask框架"><a href="#flask框架" class="headerlink" title="flask框架"></a>flask框架</h3><ul>
 <li>WSGI: Werkzeug<ul>
 <li>web server gateway interface, 把来自客户端的请求发送给flask程序处理</li>
 </ul>
@@ -733,12 +678,94 @@ def user(name):
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>主要按照 <a href="https://realpython.com/blog/python/kickstarting-flask-on-ubuntu-setup-and-deployment/">Kickstarting Flask on Ubuntu - Setup and Deployment</a><br><img src="https://raw.githubusercontent.com/realpython/flask-deploy/master/images/localhost2.jpg" alt="原理"></p>
+        <a id="more"></a>
+<p>主要按照 <a href="https://realpython.com/blog/python/kickstarting-flask-on-ubuntu-setup-and-deployment/" target="_blank" rel="external">Kickstarting Flask on Ubuntu - Setup and Deployment</a><br><img src="https://raw.githubusercontent.com/realpython/flask-deploy/master/images/localhost2.jpg" alt="原理"></p>
 <ul>
 <li>nginx: 反向代理连接外网</li>
 <li>gunicorn: 连接程序和nginx</li>
 <li>supervisor: 管理进程</li>
 <li><p>flask: 建站框架</p>
+<!--more-->
+<h3 id="准备工作-新建用户-安装需要的软件"><a href="#准备工作-新建用户-安装需要的软件" class="headerlink" title="准备工作:新建用户,安装需要的软件"></a>准备工作:新建用户,安装需要的软件</h3><p>新增用户</p>
+<p>  $ adduser newuser<br>  $ adduser newuser sudo<br>  切换到新用户.</p>
+<p>  $su newuser<br>安装</p>
+<p>  $ sudo apt-get update<br>  $ sudo apt-get install -y python python-pip python-virtualenv nginx gunicorn</p>
+</li>
+</ul>
+<h3 id="建flask小站"><a href="#建flask小站" class="headerlink" title="建flask小站"></a>建flask小站</h3><p>实际我的目录当然不是这个啦~</p>
+<pre><code>$ sudo mkdir /home/www &amp;&amp; cd /home/www
+</code></pre><p>建立并激活virtualenv小环境,</p>
+<pre><code>$ sudo virtualenv env
+$ source env/bin/activate
+</code></pre><p>安装:</p>
+<pre><code>$ sudo pip install Flask
+$ sudo mkdir flask_project &amp;&amp; cd flask_project
+$ sudo vim app.py
+</code></pre><p>加入如下代码:</p>
+<pre><code>from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+
+@app.route(&apos;/&apos;)
+def index():
+    return &apos;Flask is running!&apos;
+
+
+@app.route(&apos;/data&apos;)
+def names():
+    data = {&quot;names&quot;: [&quot;John&quot;, &quot;Jacob&quot;, &quot;Julie&quot;, &quot;Jennifer&quot;]}
+    return jsonify(data)
+
+
+if __name__ == &apos;__main__&apos;:
+    app.run()
+</code></pre><p>静态文件目录:</p>
+<pre><code>$ sudo mkdir static
+</code></pre><p>sudo vim static/index.html :</p>
+<pre><code>&lt;h1&gt;Test!&lt;/h1&gt;
+</code></pre><h3 id="设置Nginx"><a href="#设置Nginx" class="headerlink" title="设置Nginx"></a>设置Nginx</h3><p>配置文件路径:/etc/nginx/sites-enabled/<br>default文件是一个模板,</p>
+<pre><code>$ sudo /etc/init.d/nginx start
+$ sudo rm /etc/nginx/sites-enabled/default
+$ sudo touch /etc/nginx/sites-available/flask_project
+$ sudo ln -s /etc/nginx/sites-available/flask_project /etc/nginx/sites-enabled/flask_project
+$ sudo vim /etc/nginx/sites-enabled/flask_project
+</code></pre><p>这里的配置是需要进一步学习的,内容先放着:</p>
+<pre><code>server {
+    server_name leemoi.space; #域名
+    root /home/www/flask_project/;
+    location / {
+        proxy_pass http://localhost:8000; #gunicorn的ip和端口
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+    location /static {
+        alias  /home/www/flask_project/static/; #静态目录
+    }
+}
+</code></pre><p>使生效:</p>
+<pre><code>$ sudo /etc/init.d/nginx restart
+$ sudo /etc/init.d/nginx start
+或者:
+$ service nginx restart
+</code></pre><p>这时候已经可以试一下了,gunicorn连接flask和nginx:</p>
+<pre><code>$ cd /home/www/flask_project/
+$ gunicorn app:app -b localhost:8000
+</code></pre><p>访问域名就能看到网站已经在运行!</p>
+<h3 id="设置supervisor"><a href="#设置supervisor" class="headerlink" title="设置supervisor"></a>设置supervisor</h3><p>用来管理gunicorn进程.也可以控制一个VPS运行多个站点.</p>
+<pre><code>$ sudo apt-get install -y supervisor
+$ sudo vim /etc/supervisor/conf.d/flask_project.conf
+</code></pre><p>设置为:</p>
+<pre><code>[program:flask_project]
+command = gunicorn app:app -b localhost:8000
+directory = /home/leroy/www/flask_project
+user = leroy
+</code></pre><p>看下效果:</p>
+<pre><code>$ sudo pkill gunicorn
+$ sudo supervisorctl reread
+$ sudo supervisorctl update
+$ sudo supervisorctl start flask_project
+</code></pre>
       
     </div>
     
@@ -755,10 +782,6 @@ def user(name):
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a  href="/2016/04/09/建站记录-2-VPS部署Flask/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -866,7 +889,19 @@ def user(name):
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="开张大吉"><a href="#开张大吉" class="headerlink" title="开张大吉"></a>开张大吉</h3><p>在沙特的日子多学点儿，多写点儿。<br>之前一阵子在SAE上typecho里的VBA和pandas数据处理的小文章都丢了下载应用并没有把数据库一起下载下来，文章和站点必须分离做好备份……还是换用hexo。<br>
+        <a id="more"></a>
+<h3 id="开张大吉"><a href="#开张大吉" class="headerlink" title="开张大吉"></a>开张大吉</h3><p>在沙特的日子多学点儿，多写点儿。<br>之前一阵子在SAE上typecho里的VBA和pandas数据处理的小文章都丢了下载应用并没有把数据库一起下载下来，文章和站点必须分离做好备份……还是换用hexo。<br><!--more--></p>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>把几个网盘里的数据都清理一下，规划好备份。</p>
+<ol>
+<li>one drive： 和office套件结合紧密，办公多用</li>
+<li>dropbox: 空间较小，可靠性强，专用于博客</li>
+<li>google drive：手机</li>
+<li>百度：可靠性保密性均一般，就是大，用于各种资源放着。</li>
+<li>金山网盘，坚果云，华为网盘……</li>
+</ol>
+<p>evernote里面的原料和自己原创内容混在一起，感觉很乱，公开发表的放在hexo。</p>
+<p>私人日记放在VPS上自己的小站。</p>
+
       
     </div>
     
@@ -879,10 +914,6 @@ def user(name):
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a  href="/2016/04/08/2016-4-8开始记录/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>

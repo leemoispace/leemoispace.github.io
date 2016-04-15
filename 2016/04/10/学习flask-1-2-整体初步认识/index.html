@@ -4,18 +4,51 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>linux_tools | leemoispace</title>
+  <title>[学习flask]1,整体初步认识 | leemoispace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.">
+  <meta name="description" content="flask框架
+WSGI: Werkzeug
+web server gateway interface, 把来自客户端的请求发送给flask程序处理
+
+
+template: jinjia2
+数据库可自选
+
+虚拟环境python2.7: virtualenv
+python3.4 pyvenv
+我的目录实操目录(可githook到vps):~/flask/flask_project
+教程源码目录:~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux_tools">
-<meta property="og:url" content="http://yoursite.com/2016/04/11/linux-tools/index.html">
+<meta property="og:title" content="[学习flask]1,整体初步认识">
+<meta property="og:url" content="http://yoursite.com/2016/04/10/学习flask-1-2-整体初步认识/index.html">
 <meta property="og:site_name" content="leemoispace">
-<meta property="og:description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.">
-<meta property="og:updated_time" content="2016-04-15T15:57:58.055Z">
+<meta property="og:description" content="flask框架
+WSGI: Werkzeug
+web server gateway interface, 把来自客户端的请求发送给flask程序处理
+
+
+template: jinjia2
+数据库可自选
+
+虚拟环境python2.7: virtualenv
+python3.4 pyvenv
+我的目录实操目录(可githook到vps):~/flask/flask_project
+教程源码目录:~">
+<meta property="og:updated_time" content="2016-04-15T14:07:54.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux_tools">
-<meta name="twitter:description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.">
+<meta name="twitter:title" content="[学习flask]1,整体初步认识">
+<meta name="twitter:description" content="flask框架
+WSGI: Werkzeug
+web server gateway interface, 把来自客户端的请求发送给flask程序处理
+
+
+template: jinjia2
+数据库可自选
+
+虚拟环境python2.7: virtualenv
+python3.4 pyvenv
+我的目录实操目录(可githook到vps):~/flask/flask_project
+教程源码目录:~">
   
     <link rel="alternative" href="/atom.xml" title="leemoispace" type="application/atom+xml">
   
@@ -184,11 +217,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-linux-tools" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-学习flask-1-2-整体初步认识" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/11/linux-tools/" class="article-date">
-  	<time datetime="2016-04-10T21:00:45.000Z" itemprop="datePublished">2016-04-11</time>
+      <a href="/2016/04/10/学习flask-1-2-整体初步认识/" class="article-date">
+  	<time datetime="2016-04-10T20:44:49.000Z" itemprop="datePublished">2016-04-10</time>
 </a>
     </div>
   
@@ -201,7 +234,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      linux_tools
+      [学习flask]1,整体初步认识
     </h1>
   
 
@@ -210,10 +243,14 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flask/">flask</a></li></ul>
 	</div>
 
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
 
         <div class="clearfix"></div>
       </div>
@@ -221,70 +258,68 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.<br><a id="more"></a></p>
-<h3 id="切换ctrl和caps"><a href="#切换ctrl和caps" class="headerlink" title="切换ctrl和caps"></a>切换ctrl和caps</h3><p>gnome-tweak-tool不管用啊,<br>在~/.bash_profile中加入:</p>
-<pre><code>$setxkbmap -option
-$setxkbmap -option &quot;ctrl:swapcaps&quot;
-</code></pre><p>第一行是恢复默认,第二行是修改.bash_profile只在重启系统后source,而bashrc每次打开shell都会运行.</p>
-<h3 id="shell-bookmark"><a href="#shell-bookmark" class="headerlink" title="shell bookmark"></a>shell bookmark</h3><p>bashmarks</p>
-<p>加入~/.bashrc:</p>
-<pre><code>source ~/.local/bin/bashmarks.sh
-</code></pre><h3 id="shell终端多屏-tmux-terminator"><a href="#shell终端多屏-tmux-terminator" class="headerlink" title="shell终端多屏: tmux terminator"></a>shell终端多屏: tmux terminator</h3><p><a href="http://blog.jobbole.com/87584/" target="_blank" rel="external">http://blog.jobbole.com/87584/</a></p>
-<p>$sudo apt-get install tmux</p>
-<p>$vim ~/.tmux.conf</p>
-<p>启动,直接tmux</p>
-<p>使生效:命令模式（按PREFIX : ，即按下ctrl+b,再输入一个“：”)输入</p>
-<pre><code>source-file ~/.tmux.conf
-</code></pre><p>内容:<br>    #<br>    unbind C-b<br>    set -g prefix C-a</p>
-<pre><code># bind a reload key ctrl+r
-bind R source-file ~/.tmux.conf ; display-message &quot;Config reloaded..&quot;
-
-#vim模式
-# Use vim keybindings in copy mode
-setw -g mode-keys vi
-
-#将窗口分为3个部分，方便编程（一个文本编辑、一个编译运行查看运行结果、一个浏览文件系统）.
-#打开utf8 支持
-set -g status-utf8 on
-setw -g utf8 on
-
-# statusbar 自定义，具体可以查看man 文档，非常详细
-set -g display-time 3000
-set -g status-fg blue
-
-new  -s work # 创建一个叫work的seesion（附带有一个window）
-neww ranger #在当前session再创建一个window运行ranger
-selectw -t 0 # 选择第一window
-splitw -h -p 50 -t 0 # 水平切割第一个pane，百分比是50
-splitw -v -p 50 -t 1 # 垂直切割第二个pane，百分比是50
-selectp -t 0 # 选择第一个pane
-</code></pre><p>添加了新的配置，只需要按下 Ctrl-b r 就可以重新加载配置并使新的配置生效，从而免去了开启一个新的会话</p>
-<p>启动自动进入布局:</p>
-<pre><code>$ alias tmux2work=”tmux attach -t work”
-</code></pre><p>以下功能均要先按Ctrl+A(已经修改过,默认是B)</p>
-<p>分隔</p>
-<ul>
-<li>水平分隔 %</li>
-<li>竖直分隔 “</li>
-<li>移动 方向键</li>
+        <a id="more"></a>
+<h3 id="flask框架"><a href="#flask框架" class="headerlink" title="flask框架"></a>flask框架</h3><ul>
+<li>WSGI: Werkzeug<ul>
+<li>web server gateway interface, 把来自客户端的请求发送给flask程序处理</li>
 </ul>
-<p>会话</p>
-<ul>
-<li>$tmux new -s name</li>
-<li>会话列表 s</li>
+</li>
+<li>template: jinjia2</li>
+<li>数据库可自选</li>
 </ul>
-<p>窗口</p>
+<h3 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h3><p>python2.7: virtualenv</p>
+<p>python3.4 pyvenv</p>
+<h3 id="我的目录"><a href="#我的目录" class="headerlink" title="我的目录"></a>我的目录</h3><p>实操目录(可githook到vps):~/flask/flask_project</p>
+<p>教程源码目录:~/flask/flasky</p>
+<h3 id="2-1-初始化"><a href="#2-1-初始化" class="headerlink" title="2.1 初始化"></a>2.1 初始化</h3><p>wsgi把request交给app处理,name是根目录,以后的相对路径都是相对于name</p>
+<p>~/flask/flask_project/app.py:</p>
+<pre><code>from flask import Flask, jsonify
+app = Flask(__name__)
+</code></pre><h3 id="2-2-路由routes-和视图-view-函数"><a href="#2-2-路由routes-和视图-view-函数" class="headerlink" title="2.2 路由routes 和视图 view 函数"></a>2.2 路由routes 和视图 view 函数</h3><p>路由:针对网站上不同url的请求由哪个函数进行处理<br>定义方法:使用app.route修饰器,修饰index函数:</p>
+<pre><code>@app.route(&apos;/&apos;)
+def index():
+    return &apos;hello world&apos;
+</code></pre><p>修饰器可以修改函数的行为,注册函数为事件(event)的处理程序(handler),<br>上面index()是个view function</p>
+<p>在route中使用变量—尖括号angle brackets部分:</p>
+<pre><code>@app.route(&apos;/user/&lt;name&gt;&apos;)
+def user(name):
+    return &apos;hello, %s&apos; %name
+</code></pre><p>可以有这三种路径filter:</p>
+<pre><code>&lt;int:id&gt;
+&lt;path&gt;# 不被slash分隔的字符串
+&lt;float&gt;
+</code></pre><h3 id="2-3-启动服务"><a href="#2-3-启动服务" class="headerlink" title="2.3 启动服务"></a>2.3 启动服务</h3><p>‘<strong>name</strong> == ‘<strong>main</strong>‘’的作用是只有此程序被直接执行才运行下面代码,如果只是import就不运行.</p>
+<p>‘debug=True’:开启调试模式</p>
+<pre><code>if __name__ == &apos;__main__&apos;:
+    app.run(debug=True)
+</code></pre><p>启动之后就一直等待请求并进行响应.</p>
+<p>页码Eng 12,CHS 11</p>
+<h3 id="2-5-请求和相应"><a href="#2-5-请求和相应" class="headerlink" title="2.5 请求和相应"></a>2.5 请求和相应</h3><h4 id="2-5-1-Context-上下文"><a href="#2-5-1-Context-上下文" class="headerlink" title="2.5.1 Context 上下文"></a>2.5.1 Context 上下文</h4><p>Context让一个变量(如一个request)在一个线程thread中作为全局可见变量.需要激活(运行app.app_context())后才可见.</p>
+<p>两种context:</p>
 <ul>
-<li>新建窗口 c</li>
-<li>选择窗口 数字键 n p</li>
-<li>关闭 x</li>
+<li>applicaiton context<ul>
+<li>current_app</li>
+<li>g</li>
 </ul>
-<p>复制</p>
-<ul>
-<li>[</li>
-<li>复制到系统剪贴板:<a href="https://github.com/tmux-plugins/tmux-yank" target="_blank" rel="external">https://github.com/tmux-plugins/tmux-yank</a></li>
+</li>
+<li>request context<ul>
+<li>request</li>
+<li>session</li>
 </ul>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>###</p>
+</li>
+</ul>
+<h4 id="2-5-2-请求调度"><a href="#2-5-2-请求调度" class="headerlink" title="2.5.2 请求调度"></a>2.5.2 请求调度</h4><p>除了routes分配(dispatch)请求由哪个函数处理之外,还可以用app.add_url_rule()</p>
+<p>app.url_map()显示当前路由map<br>主要是处理GET响应</p>
+<h4 id="2-5-3-请求钩子"><a href="#2-5-3-请求钩子" class="headerlink" title="2.5.3 请求钩子"></a>2.5.3 请求钩子</h4><p>在请求的不同阶段自动调用一段代码.<br>用装饰器实现,有四种.</p>
+<p>g context全局变量用来做data的swap缓存区域.</p>
+<h4 id="2-5-4-响应"><a href="#2-5-4-响应" class="headerlink" title="2.5.4 响应"></a>2.5.4 响应</h4><p>view function的返回值作为响应response.<br>响应除了字符串作为html之外,还要包含HTTP status code<br>这就是return的第二个值.</p>
+<p>如果不返回多个值,那么可以返回response对象,用make_response().<br>有时候需要这样来进一步设置响应对象,如设置cookie</p>
+<p>重定向,302 status<br>redirect(url)返回一个response对象.</p>
+<p>abort函数,返回 404</p>
+<h3 id="2-6-flask扩展"><a href="#2-6-flask扩展" class="headerlink" title="2.6 flask扩展"></a>2.6 flask扩展</h3><p>加入一个命令行选项的扩展作为例子.</p>
+<p>加入flask-script扩展使其可以接受命令行选项,而不只是接收脚本中设置的参数.具体用法看对应章节.host参数蛮有用,可以监听除了localhost之外的端口.</p>
+<p>flask扩展都在flask.ext命名空间里</p>
+<p>把程序实例作为参数传给构造函数.</p>
 
       
     </div>
@@ -294,18 +329,18 @@ selectp -t 0 # 选择第一个pane
     
 <nav id="article-nav">
   
-    <a href="/2016/04/11/学习flask-3-模板/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/11/linux-tools/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          [学习flask]2,模板
+          linux_tools
         
       </div>
     </a>
   
   
-    <a href="/2016/04/10/学习flask-1-2-整体初步认识/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[学习flask]1,整体初步认识</div>
+    <a href="/2016/04/09/建站记录-3-自动部署/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[建站记录]3.自动部署</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -340,7 +375,7 @@ selectp -t 0 # 选择第一个pane
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="linux-tools" data-title="linux_tools" data-url="http://yoursite.com/2016/04/11/linux-tools/"></div>
+	<div class="ds-thread" data-thread-key="学习flask-1-2-整体初步认识" data-title="[学习flask]1,整体初步认识" data-url="http://yoursite.com/2016/04/10/学习flask-1-2-整体初步认识/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

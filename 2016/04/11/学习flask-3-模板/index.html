@@ -14,12 +14,11 @@
 渲染:用上下文中的值替换占位符
 表现函数调用render_template函数
 模板文件位置/templates
-3.1.2变量
-
-写在模板里的占位符: {{variable}}
+3.1.2变量本文用到的jinja语法 hexo无法渲染,需要用包起来
 
 
-变量可以是各种类">
+
+写在模板">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[学习flask]2,模板">
 <meta property="og:url" content="http://yoursite.com/2016/04/11/学习flask-3-模板/index.html">
@@ -32,13 +31,12 @@
 渲染:用上下文中的值替换占位符
 表现函数调用render_template函数
 模板文件位置/templates
-3.1.2变量
-
-写在模板里的占位符: {{variable}}
+3.1.2变量本文用到的jinja语法 hexo无法渲染,需要用包起来
 
 
-变量可以是各种类">
-<meta property="og:updated_time" content="2016-04-15T13:37:17.476Z">
+
+写在模板">
+<meta property="og:updated_time" content="2016-04-15T13:47:45.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[学习flask]2,模板">
 <meta name="twitter:description" content="3.1jinjia2P21 EN,P19 CHS
@@ -49,12 +47,11 @@
 渲染:用上下文中的值替换占位符
 表现函数调用render_template函数
 模板文件位置/templates
-3.1.2变量
-
-写在模板里的占位符: {{variable}}
+3.1.2变量本文用到的jinja语法 hexo无法渲染,需要用包起来
 
 
-变量可以是各种类">
+
+写在模板">
   
     <link rel="alternative" href="/atom.xml" title="leemoispace" type="application/atom+xml">
   
@@ -110,7 +107,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -272,7 +269,9 @@
 <p>渲染:用上下文中的值替换占位符</p>
 <p>表现函数调用render_template函数</p>
 <p>模板文件位置/templates</p>
-<h4 id="3-1-2变量"><a href="#3-1-2变量" class="headerlink" title="3.1.2变量"></a>3.1.2变量</h4>
+<h4 id="3-1-2变量"><a href="#3-1-2变量" class="headerlink" title="3.1.2变量"></a>3.1.2变量</h4><p>本文用到的jinja语法 hexo无法渲染,需要用包起来
+
+
 
 写在模板里的占位符: {{variable}}
 
@@ -351,20 +350,16 @@ url_for() 函数按照url map中保存的信息返回url字符串
 加入favcon为例:
 
 /templates/base.html
-
+    {% raw %}
     {% block head%}
     {{super()}}
     <link rel="shortcut ico" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-ico">
     <link rel="icon" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-ico">
     {% endblock%}
-
-### 3.6 处理时间
-moment.js在浏览器中渲染时间
-
-pip install flask-moment
-
-用到再来.
-
+    {% endraw %}</p>
+<h3 id="3-6-处理时间"><a href="#3-6-处理时间" class="headerlink" title="3.6 处理时间"></a>3.6 处理时间</h3><p>moment.js在浏览器中渲染时间</p>
+<p>pip install flask-moment</p>
+<p>用到再来.<br></p>
 
       
     </div>
