@@ -213,6 +213,78 @@
       
         <a id="more"></a>
 <p>pip install flask-wtf</p>
+<h4 id="4-1-CSRF-跨站请求伪造"><a href="#4-1-CSRF-跨站请求伪造" class="headerlink" title="4.1 CSRF 跨站请求伪造"></a>4.1 CSRF 跨站请求伪造</h4><p>app.config[]字典存储框架的配置信息.</p>
+<h4 id="4-2-表单"><a href="#4-2-表单" class="headerlink" title="4.2 表单"></a>4.2 表单</h4><pre><code>from flask.ext.wtf import Form
+from wtforms import StringField, SubmitField
+from wtfroms.validators import Required
+#继承自Form
+class NameForm(Form):
+    name= StringField(&apos;what is your name?&apos;,validators=[Required()])
+    submit=SubmitField(&apos;Submit&apos;)
+</code></pre><p>StringField对应<input>text</p>
+<p>validators:验证函数</p>
+<p>HTML 的表单field对应的 WTForms,以及validatror可以查表:</p>
+<pre><code>StringField 文本字段
+TextAreaField 多行文本字段
+PasswordField 密码文本字段
+HiddenField 隐藏文本字段
+DateField 文本字段,值为 datetime.date 格式
+DateTimeField 文本字段,值为 datetime.datetime 格式
+IntegerField 文本字段,值为整数
+DecimalField 文本字段,值为 decimal.Decimal
+FloatField 文本字段,值为浮点数
+BooleanField 复选框,值为 True 和 False
+RadioField 一组单选框
+SelectField 下拉列表
+SelectMultipleField 下拉列表,可选择多个值
+FileField 文件上传字段
+SubmitField 表单提交按钮
+FormField 把表单作为字段嵌入另一个表单
+FieldList 一组指定类型的字段
+
+验证函数 说  明
+Email 验证电子邮件地址
+EqualTo 比较两个字段的值;常用于要求输入两次密码进行确认的情况
+IPAddress 验证 IPv4 网络地址
+Length 验证输入字符串的长度
+NumberRange 验证输入的值在数字范围内
+Optional 无输入值时跳过其他验证函数
+Required 确保字段中有数据
+Regexp 使用正则表达式验证输入值
+URL 验证 URL
+AnyOf 确保输入值在可选值列表中
+NoneOf 确保输入值不在可选值列表中
+</code></pre><h4 id="4-3-表单生成-渲染-HTML"><a href="#4-3-表单生成-渲染-HTML" class="headerlink" title="4.3 表单生成(渲染)HTML"></a>4.3 表单生成(渲染)HTML</h4><p>上节的表单渲染成html</p>
+<p>直接用bootstrap</p>
+<p>templates/index.html :使用 Flask-WTF 和 Flask-Bootstrap 渲染表单:</p>
+<pre><code>{ % extends &quot;base.html&quot; % }
+{ % import &quot;bootstrap/wtf.html&quot; as wtf % }
+{ % block title % }Flasky{ % endblock % }
+{ % block page_content % }
+&lt;div class=&quot;page-header&quot;&gt;
+&lt;h1&gt;Hello, { % if name % }{{ name }}{ % else % }Stranger{ % endif % }!&lt;/h1&gt;
+&lt;/div&gt;
+{{ wtf.quick_form(form) }}
+{ % endblock % }
+</code></pre><h4 id="4-4-视图函数处理表单信息"><a href="#4-4-视图函数处理表单信息" class="headerlink" title="4.4 视图函数处理表单信息"></a>4.4 视图函数处理表单信息</h4><p>新版本app.py 中的index()不仅要渲染表单,还要接收表单中的数据</p>
+<pre><code>@app.route(&apos;/&apos;,method=[&apos;GET&apos;,&apos;POST&apos;])
+def index():
+    name=None
+    form=NameForm()
+    if form.validate_on_submit():
+        name=form.name.data
+        form.name.data=&apos;&apos;
+    return render_template(&apos;index.html&apos;,form=form,name=name)
+</code></pre><p>表单最好用post方法来处理,以免明文.</p>
+<p>validate_on_submit检验所有验证函数是否通过.</p>
+<p>调试程序过程中出现端口已经被占用,原因是,ctrl+z并不终结程序!Ctrl+c 才可以.</p>
+<p>每次新加功能要安装对应的包,要import.</p>
+<h4 id="4-5-重定向和用户会话"><a href="#4-5-重定向和用户会话" class="headerlink" title="4.5 重定向和用户会话"></a>4.5 重定向和用户会话</h4><p>刷新现在的网页,会出现是否再次提交表单的提醒.<br>是因为刷新的时候会重新发送已经发送过的最后一个请求.</p>
+<p>所以不要让web程序把POST作为最后一个请求.<br>使用重定向(redirect)作为post请求的响应.重定向会最后多加一个get请求,所以post就不是最后一个请求了.</p>
+<p>带来新问题是form.name.data会丢失,所以要用session来存储信息.</p>
+<h4 id="4-6-flash消息"><a href="#4-6-flash消息" class="headerlink" title="4.6 flash消息"></a>4.6 flash消息</h4><p>flash()</p>
+<p>然后渲染flash信息<br>模板中使用 get_flashed_messages()</p>
+<p>在base.html中</p>
 
       
     </div>
