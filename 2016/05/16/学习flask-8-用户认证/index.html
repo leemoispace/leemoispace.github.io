@@ -4,18 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>学习flask-4,web表单 | leemoispace</title>
+  <title>学习flask-8-用户认证 | leemoispace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="flask处理表单">
+  <meta name="description" content="8.1   Flask 的认证扩展本章介绍的认证方案使用了多个包,并编写了胶水代码让其良好协作。本章使用的包列表如下。
+• Flask-Login:管理已登录用户的用户会话。• Werkzeug:计算密码散列值hash并进行核对。• itsdangerous:生成并核对加密安全令牌。
+除了认证相关的包之外,本章还用到如下常规用途的扩展。
+• Flask-Mail:发送与认证相关的电子邮件。• Fl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习flask-4,web表单">
-<meta property="og:url" content="http://yoursite.com/2016/04/13/学习flask-4-web表单/index.html">
+<meta property="og:title" content="学习flask-8-用户认证">
+<meta property="og:url" content="http://yoursite.com/2016/05/16/学习flask-8-用户认证/index.html">
 <meta property="og:site_name" content="leemoispace">
-<meta property="og:description" content="flask处理表单">
-<meta property="og:updated_time" content="2016-04-15T22:46:31.157Z">
+<meta property="og:description" content="8.1   Flask 的认证扩展本章介绍的认证方案使用了多个包,并编写了胶水代码让其良好协作。本章使用的包列表如下。
+• Flask-Login:管理已登录用户的用户会话。• Werkzeug:计算密码散列值hash并进行核对。• itsdangerous:生成并核对加密安全令牌。
+除了认证相关的包之外,本章还用到如下常规用途的扩展。
+• Flask-Mail:发送与认证相关的电子邮件。• Fl">
+<meta property="og:updated_time" content="2016-05-14T19:50:58.306Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习flask-4,web表单">
-<meta name="twitter:description" content="flask处理表单">
+<meta name="twitter:title" content="学习flask-8-用户认证">
+<meta name="twitter:description" content="8.1   Flask 的认证扩展本章介绍的认证方案使用了多个包,并编写了胶水代码让其良好协作。本章使用的包列表如下。
+• Flask-Login:管理已登录用户的用户会话。• Werkzeug:计算密码散列值hash并进行核对。• itsdangerous:生成并核对加密安全令牌。
+除了认证相关的包之外,本章还用到如下常规用途的扩展。
+• Flask-Mail:发送与认证相关的电子邮件。• Fl">
   
     <link rel="alternative" href="/atom.xml" title="leemoispace" type="application/atom+xml">
   
@@ -184,11 +193,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-学习flask-4-web表单" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-学习flask-8-用户认证" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/13/学习flask-4-web表单/" class="article-date">
-  	<time datetime="2016-04-13T02:07:05.000Z" itemprop="datePublished">2016-04-13</time>
+      <a href="/2016/05/16/学习flask-8-用户认证/" class="article-date">
+  	<time datetime="2016-05-16T17:12:48.000Z" itemprop="datePublished">2016-05-16</time>
 </a>
     </div>
   
@@ -201,7 +210,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      学习flask-4,web表单
+      学习flask-8-用户认证
     </h1>
   
 
@@ -225,79 +234,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>flask处理表单<br><a id="more"></a><br>pip install flask-wtf</p>
-<h4 id="4-1-CSRF-跨站请求伪造"><a href="#4-1-CSRF-跨站请求伪造" class="headerlink" title="4.1 CSRF 跨站请求伪造"></a>4.1 CSRF 跨站请求伪造</h4><p>app.config[]字典存储框架的配置信息.</p>
-<h4 id="4-2-表单"><a href="#4-2-表单" class="headerlink" title="4.2 表单"></a>4.2 表单</h4><pre><code>from flask.ext.wtf import Form
-from wtforms import StringField, SubmitField
-from wtfroms.validators import Required
-#继承自Form
-class NameForm(Form):
-    name= StringField(&apos;what is your name?&apos;,validators=[Required()])
-    submit=SubmitField(&apos;Submit&apos;)
-</code></pre><p>StringField对应<input>text</p>
-<p>validators:验证函数</p>
-<p>HTML 的表单field对应的 WTForms,以及validatror可以查表:</p>
-<pre><code>StringField 文本字段
-TextAreaField 多行文本字段
-PasswordField 密码文本字段
-HiddenField 隐藏文本字段
-DateField 文本字段,值为 datetime.date 格式
-DateTimeField 文本字段,值为 datetime.datetime 格式
-IntegerField 文本字段,值为整数
-DecimalField 文本字段,值为 decimal.Decimal
-FloatField 文本字段,值为浮点数
-BooleanField 复选框,值为 True 和 False
-RadioField 一组单选框
-SelectField 下拉列表
-SelectMultipleField 下拉列表,可选择多个值
-FileField 文件上传字段
-SubmitField 表单提交按钮
-FormField 把表单作为字段嵌入另一个表单
-FieldList 一组指定类型的字段
-
-验证函数 说  明
-Email 验证电子邮件地址
-EqualTo 比较两个字段的值;常用于要求输入两次密码进行确认的情况
-IPAddress 验证 IPv4 网络地址
-Length 验证输入字符串的长度
-NumberRange 验证输入的值在数字范围内
-Optional 无输入值时跳过其他验证函数
-Required 确保字段中有数据
-Regexp 使用正则表达式验证输入值
-URL 验证 URL
-AnyOf 确保输入值在可选值列表中
-NoneOf 确保输入值不在可选值列表中
-</code></pre><h4 id="4-3-表单生成-渲染-HTML"><a href="#4-3-表单生成-渲染-HTML" class="headerlink" title="4.3 表单生成(渲染)HTML"></a>4.3 表单生成(渲染)HTML</h4><p>上节的表单渲染成html</p>
-<p>直接用bootstrap</p>
-<p>templates/index.html :使用 Flask-WTF 和 Flask-Bootstrap 渲染表单:</p>
-<pre><code>{ % extends &quot;base.html&quot; % }
-{ % import &quot;bootstrap/wtf.html&quot; as wtf % }
-{ % block title % }Flasky{ % endblock % }
-{ % block page_content % }
-&lt;div class=&quot;page-header&quot;&gt;
-&lt;h1&gt;Hello, { % if name % }{{ name }}{ % else % }Stranger{ % endif % }!&lt;/h1&gt;
-&lt;/div&gt;
-{{ wtf.quick_form(form) }}
-{ % endblock % }
-</code></pre><h4 id="4-4-视图函数处理表单信息"><a href="#4-4-视图函数处理表单信息" class="headerlink" title="4.4 视图函数处理表单信息"></a>4.4 视图函数处理表单信息</h4><p>新版本app.py 中的index()不仅要渲染表单,还要接收表单中的数据</p>
-<pre><code>@app.route(&apos;/&apos;,method=[&apos;GET&apos;,&apos;POST&apos;])
-def index():
-    name=None
-    form=NameForm()
-    if form.validate_on_submit():
-        name=form.name.data
-        form.name.data=&apos;&apos;
-    return render_template(&apos;index.html&apos;,form=form,name=name)
-</code></pre><p>表单最好用post方法来处理,以免明文.</p>
-<p>validate_on_submit检验所有验证函数是否通过.</p>
-<p>调试程序过程中出现端口已经被占用,原因是,ctrl+z并不终结程序!Ctrl+c 才可以.</p>
-<p>每次新加功能要安装对应的包,要import.</p>
-<h4 id="4-5-重定向和用户会话"><a href="#4-5-重定向和用户会话" class="headerlink" title="4.5 重定向和用户会话"></a>4.5 重定向和用户会话</h4><p>刷新现在的网页,会出现是否再次提交表单的提醒.<br>是因为刷新的时候会重新发送已经发送过的最后一个请求.</p>
-<p>所以不要让web程序把POST作为最后一个请求.<br>使用重定向(redirect)作为post请求的响应.重定向会最后多加一个get请求,所以post就不是最后一个请求了.</p>
-<p>带来新问题是form.name.data会丢失,所以要用session来存储信息.</p>
-<h4 id="4-6-flash消息"><a href="#4-6-flash消息" class="headerlink" title="4.6 flash消息"></a>4.6 flash消息</h4><p>flash()</p>
-<p>然后渲染flash信息<br>模板中使用 get_flashed_messages()</p>
-<p>在base.html中</p>
+        <h4 id="8-1-Flask-的认证扩展"><a href="#8-1-Flask-的认证扩展" class="headerlink" title="8.1   Flask 的认证扩展"></a>8.1   Flask 的认证扩展</h4><p>本章介绍的认证方案使用了多个包,并编写了胶水代码让其良好协作。本章使用的包列表如下。</p>
+<p>• Flask-Login:管理已登录用户的用户会话。<br>• Werkzeug:计算密码散列值hash并进行核对。<br>• itsdangerous:生成并核对加密安全令牌。</p>
+<p>除了认证相关的包之外,本章还用到如下常规用途的扩展。</p>
+<p>• Flask-Mail:发送与认证相关的电子邮件。<br>• Flask-Bootstrap:HTML 模板。<br>• Flask-WTF:Web 表单。</p>
+<h4 id="8-2-密码安全"><a href="#8-2-密码安全" class="headerlink" title="8.2   密码安全"></a>8.2   密码安全</h4><p>不能存储密码本身,存储密码的hash值.</p>
+<p>generate_password_hash(password, method= pbkdf2:sha1 , salt_length=8)</p>
+<p>check_password_hash(hash, password)</p>
 
       
     </div>
@@ -307,18 +250,9 @@ def index():
     
 <nav id="article-nav">
   
-    <a href="/2016/04/17/学习flask-5-数据库/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          学习flask-5-数据库
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/11/学习flask-3-模板/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[学习flask]3,模板</div>
+    <a href="/2016/04/21/English_mail/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">english mails</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -353,7 +287,7 @@ def index():
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="学习flask-4-web表单" data-title="学习flask-4,web表单" data-url="http://yoursite.com/2016/04/13/学习flask-4-web表单/"></div>
+	<div class="ds-thread" data-thread-key="学习flask-8-用户认证" data-title="学习flask-8-用户认证" data-url="http://yoursite.com/2016/05/16/学习flask-8-用户认证/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

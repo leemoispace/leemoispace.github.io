@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/11/学习flask-3-模板/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="flask 使用模板">
-<meta property="og:updated_time" content="2016-04-15T22:47:33.453Z">
+<meta property="og:updated_time" content="2016-07-02T18:25:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[学习flask]3,模板">
 <meta name="twitter:description" content="flask 使用模板">
@@ -71,7 +71,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -226,19 +226,23 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>flask 使用模板<br><a id="more"></a></p>
-<h3 id="3-1jinjia2"><a href="#3-1jinjia2" class="headerlink" title="3.1jinjia2"></a>3.1jinjia2</h3><p>P21 EN,P19 CHS</p>
+<h3 id="3-1-jinjia2"><a href="#3-1-jinjia2" class="headerlink" title="3.1 jinjia2"></a>3.1 jinjia2</h3><p>P21 EN,P19 CHS</p>
 <ul>
 <li>业务逻辑 后台 business logic</li>
-<li>表现逻辑 前端 presentation logic<h4 id="3-1-1-渲染-模板"><a href="#3-1-1-渲染-模板" class="headerlink" title="3.1.1 渲染,模板"></a>3.1.1 渲染,模板</h4>把表现逻辑交给模板处理.</li>
+<li>表现逻辑 前端 presentation logic<br>前后端分离，一个和数据库mysql打交道，一个和浏览器html打交道。</li>
 </ul>
+<h4 id="3-1-1-渲染-模板"><a href="#3-1-1-渲染-模板" class="headerlink" title="3.1.1 渲染,模板"></a>3.1.1 渲染,模板</h4><p>把表现逻辑交给模板处理.</p>
 <p>渲染:用上下文中的值替换占位符</p>
-<p>表现函数调用render_template函数</p>
-<p>模板文件位置/templates</p>
-<h4 id="3-1-2变量"><a href="#3-1-2变量" class="headerlink" title="3.1.2变量"></a>3.1.2变量</h4><p>本文用到的jinja语法 hexo无法渲染,需要用包起来
+<p>app中的表现函数调用render_template函数来渲染模板。<br>如：</p>
+<pre><code>return render_template(&apos;user.html&apos;, name=name)
+</code></pre><p>模板文件位置/templates/*.html</p>
+<h4 id="3-1-2变量"><a href="#3-1-2变量" class="headerlink" title="3.1.2变量"></a>3.1.2变量</h4><p>本文用到的jinja语法 会导致hexo博客引擎无法渲染,需要用包起来
 
 
+  
+写在模板里的占位符:
 
-写在模板里的占位符: {{variable}}
+    {{variable}}
 
 
 变量可以是各种类型,list dict object

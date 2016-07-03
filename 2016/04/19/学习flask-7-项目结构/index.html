@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/19/学习flask-7-项目结构/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="flask大型项目结构">
-<meta property="og:updated_time" content="2016-04-19T10:43:23.332Z">
+<meta property="og:updated_time" content="2016-05-14T19:37:47.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习flask-7-项目结构">
 <meta name="twitter:description" content="flask大型项目结构">
@@ -71,7 +71,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -243,7 +243,6 @@
         |-__init__.py
         |-test*.py
     |-venv/
-
     |-requirements.txt
     |-config.py
     |-manage.py
@@ -298,7 +297,48 @@ def page_not_found(e):
 def internal_server_error(e):
     return render_template(&apos;500.html&apos;), 500
 </code></pre><p>如果使用 errorhandler 修饰器,那么只有蓝本中的错误才能触发处理程序。要想注册程序全局的错误处理程序,必须使用 app_errorhandler 。</p>
+<h4 id="7-4-启动脚本"><a href="#7-4-启动脚本" class="headerlink" title="7.4 启动脚本"></a>7.4 启动脚本</h4><p>根目录下的manage.py文件用于启动程序</p>
+<pre><code>#!/usr/bin/env python
+import os
+from app import create_app, db
+from app.models import User, Role
+from flask.ext.script import Manager, Shell
+from flask.ext.migrate import Migrate, MigrateCommand
 
+app = create_app(os.getenv(&apos;FLASK_CONFIG&apos;) or &apos;default&apos;)
+manager = Manager(app)
+migrate = Migrate(app, db)
+
+def make_shell_context():
+    return dict(app=app, db=db, User=User, Role=Role)
+manager.add_command(&quot;shell&quot;, Shell(make_context=make_shell_context))
+manager.add_command(&apos;db&apos;, MigrateCommand)
+
+if __name__ == &apos;__main__&apos;:
+    manager.run()
+</code></pre><h4 id="7-5-用到的包"><a href="#7-5-用到的包" class="headerlink" title="7.5 用到的包"></a>7.5 用到的包</h4><p>如果你要创建这个虚拟环境的完全副本,可以创建一个新的虚拟环境,并在其上运行以下<br>命令:</p>
+<p>(venv) $ pip install -r requirements.txt</p>
+<pre><code>Flask==0.10.1
+Flask-Bootstrap==3.0.3.1
+Flask-Mail==0.9.0
+Flask-Migrate==1.1.0
+Flask-Moment==0.2.0
+Flask-SQLAlchemy==1.0
+Flask-Script==0.6.6
+Flask-WTF==0.9.4
+Jinja2==2.7.1
+Mako==0.9.1
+MarkupSafe==0.18
+SQLAlchemy==0.8.4
+WTForms==1.0.5
+Werkzeug==0.9.4
+alembic==0.6.2
+blinker==1.3
+itsdangerous==0.23
+</code></pre><h4 id="7-6-单元测试"><a href="#7-6-单元测试" class="headerlink" title="7.6 单元测试"></a>7.6 单元测试</h4><p>执行 git checkout 7a 签出程序的这个版本。为确保安装了所有依赖包,还需执行 pip install -r requirements.txt 命令.</p>
+<h4 id="7-7-创建数据库"><a href="#7-7-创建数据库" class="headerlink" title="7.7 创建数据库"></a>7.7 创建数据库</h4><p>如果使用 Flask-Migrate 跟踪迁移,可使用如下命令创建数据表或者升级到最新修订版本:</p>
+<pre><code>(venv) $ python manage.py db upgrade
+</code></pre>
       
     </div>
     
@@ -307,11 +347,11 @@ def internal_server_error(e):
     
 <nav id="article-nav">
   
-    <a href="/2016/04/19/leetcode-4-median-of-two-sorted-arrays/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/19/leetcode-1-Two-Sum/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          leetcode-4-median-of-two-sorted-arrays
+          leetcode-1-Two-Sum
         
       </div>
     </a>

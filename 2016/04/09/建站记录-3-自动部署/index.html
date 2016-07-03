@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/09/建站记录-3-自动部署/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="git hook 和fabric的使用,实现自动化部署.">
-<meta property="og:updated_time" content="2016-04-13T01:07:43.824Z">
+<meta property="og:updated_time" content="2016-07-02T19:43:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[建站记录]3.自动部署">
 <meta name="twitter:description" content="git hook 和fabric的使用,实现自动化部署.">
@@ -71,7 +71,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -227,7 +227,8 @@
       
         <p>git hook 和fabric的使用,实现自动化部署.</p>
 <a id="more"></a>
-<h3 id="Git-hook实现项目部署自动化"><a href="#Git-hook实现项目部署自动化" class="headerlink" title="Git hook实现项目部署自动化"></a>Git hook实现项目部署自动化</h3><p>接下来设置git hook,实现我们本地push到repo后git自动部署到VPS.<br>其实就是自己搭建一个私人的github服务~<br>安装git,建立bare仓库,bare意思是文件夹里没有源代码,只是用于版本控制:</p>
+<h3 id="Git-hook实现项目部署自动化"><a href="#Git-hook实现项目部署自动化" class="headerlink" title="Git hook实现项目部署自动化"></a>Git hook实现项目部署自动化</h3><p><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps" target="_blank" rel="external">https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps</a></p>
+<p>接下来设置git hook,实现我们本地push到repo后git自动部署到VPS.<br>其实就是自己搭建一个私人的github服务~<br>安装git,建立bare仓库,bare意思是文件夹里没有源代码,只是用于版本控制:</p>
 <pre><code>$ sudo apt-get install -y git
 $ sudo mkdir /home/git &amp;&amp; cd /home/git
 $ sudo mkdir flask_project.git &amp;&amp; cd flask_project.git
@@ -254,7 +255,10 @@ $ git remote add production root@&lt;your_ip_or_domain&gt;:/home/git/flask_proje
 </code></pre><p>修改,删除再添加,如果只是改名就rename:</p>
 <pre><code>$ git remote -v
 $ git remote rm production
-</code></pre><p>对代码库进行修改后,</p>
+</code></pre><p>这时候，config 里面关键的一行是这样的：</p>
+<pre><code>url = ssh://root@bw:/home/leroy/git/flask_project.git
+</code></pre><p>这就设置完了。</p>
+<p>以后对代码库进行修改后,</p>
 <pre><code>$ git add -A
 $ git commit -am &quot;initial&quot;
 $ git push production master
