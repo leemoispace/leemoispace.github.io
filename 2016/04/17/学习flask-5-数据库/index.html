@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/17/学习flask-5-数据库/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="就是数据库啊~">
-<meta property="og:updated_time" content="2016-04-18T20:53:05.910Z">
+<meta property="og:updated_time" content="2016-07-03T22:34:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习flask-5-数据库">
 <meta name="twitter:description" content="就是数据库啊~">
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 12px;">ssh</a> <a href="/tags/tools/" style="font-size: 14px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -188,7 +188,7 @@
   
     <div class="article-meta">
       <a href="/2016/04/17/学习flask-5-数据库/" class="article-date">
-  	<time datetime="2016-04-16T21:23:07.000Z" itemprop="datePublished">2016-04-17</time>
+  	<time datetime="2016-04-16T20:23:07.000Z" itemprop="datePublished">2016-04-17</time>
 </a>
     </div>
   
@@ -235,17 +235,22 @@
 <h4 id="5-4-python数据库框架"><a href="#5-4-python数据库框架" class="headerlink" title="5.4 python数据库框架"></a>5.4 python数据库框架</h4><p>Flask-SQLAlchemy</p>
 <p>$pip install flask-sqlalchemy</p>
 <p>不同数据库对应的url</p>
-<p>MySQL mysql://username:password@hostname/database<br>Postgres postgresql://username:password@hostname/database<br>SQLite(Unix) sqlite:////absolute/path/to/database<br>SQLite(Windows) sqlite:///c:/absolute/path/to/database</p>
+<ul>
+<li>MySQL mysql://username:password@hostname/database</li>
+<li>Postgres postgresql://username:password@hostname/database</li>
+<li>SQLite(Unix) sqlite:////absolute/path/to/database</li>
+<li>SQLite(Windows) sqlite:///c:/absolute/path/to/database</li>
+</ul>
 <p>EN p53 CHS p47</p>
 <p>配置数据库:</p>
 <pre><code>from flask.ext.sqlalchemy import SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config[&apos;SQLALCHEMY_DATABASE_URI&apos;] =\
-&apos;sqlite:///&apos; + os.path.join(basedir, &apos;data.sqlite&apos;)
+    &apos;sqlite:///&apos; + os.path.join(basedir, &apos;data.sqlite&apos;)
 app.config[&apos;SQLALCHEMY_COMMIT_ON_TEARDOWN&apos;] = True
 db = SQLAlchemy(app)
-</code></pre><h4 id="5-6-定义数据库模型"><a href="#5-6-定义数据库模型" class="headerlink" title="5.6 定义数据库模型"></a>5.6 定义数据库模型</h4><p>用类来表达数据库结构</p>
+</code></pre><h4 id="5-6-定义数据库模型"><a href="#5-6-定义数据库模型" class="headerlink" title="5.6 定义数据库模型"></a>5.6 定义数据库模型</h4><p>用类来表达数据库结构，底层已经被抽象了。</p>
 <p>主键通常为id列</p>
 <p>虽然没有强制要求,但这两个模型都定义了 <strong>repr()</strong> 方法,返回一个具有可读性的字符<br>串表示模型,可在调试和测试时使用。</p>
 <pre><code>class Role(db.Model):
@@ -273,7 +278,7 @@ class User(db.Model):
 class User(db.Model):
     # ...
     role_id = db.Column(db.Integer, db.ForeignKey(&apos;roles.id&apos;))
-</code></pre><p>多种关系选项,可查表</p>
+</code></pre><p>多种关系选项,可查表 p49</p>
 <p>一对一:uselist false<br>多对多,需要用到第三张表.</p>
 <h4 id="5-8-数据库操作"><a href="#5-8-数据库操作" class="headerlink" title="5.8 数据库操作"></a>5.8 数据库操作</h4><pre><code>$ python app.py shell
 </code></pre><h5 id="5-8-1-增"><a href="#5-8-1-增" class="headerlink" title="5.8.1 增"></a>5.8.1 增</h5><pre><code>db.create_all()
@@ -313,14 +318,9 @@ db.session.add(user_david)
 <p>和git的使用很像.</p>
 <h5 id="5-8-2-删"><a href="#5-8-2-删" class="headerlink" title="5.8.2 删"></a>5.8.2 删</h5><pre><code>db.session.delete(mod_role)
 db.session.commit()
-</code></pre><h5 id="5-8-3-查"><a href="#5-8-3-查" class="headerlink" title="5.8.3 查"></a>5.8.3 查</h5><blockquote>
-<blockquote>
-<blockquote>
-<p>Role.query.all()<br>User.query.filter_by(role=user_role).all()</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h5 id="5-8-4-改"><a href="#5-8-4-改" class="headerlink" title="5.8.4 改"></a>5.8.4 改</h5><p>在数据库会话上调用 add() 方法也能更新模型。我们继续在之前的 shell 会话中进行操作,<br>下面这个例子把 “Admin” 角色重命名为 “Administrator” :</p>
+</code></pre><h5 id="5-8-3-查"><a href="#5-8-3-查" class="headerlink" title="5.8.3 查"></a>5.8.3 查</h5><pre><code>Role.query.all()
+User.query.filter_by(role=user_role).all()
+</code></pre><h5 id="5-8-4-改"><a href="#5-8-4-改" class="headerlink" title="5.8.4 改"></a>5.8.4 改</h5><p>在数据库会话上调用 add() 方法也能更新模型。我们继续在之前的 shell 会话中进行操作,<br>下面这个例子把 “Admin” 角色重命名为 “Administrator” :</p>
 <pre><code>&gt;&gt;&gt; admin_role.name = &apos;Administrator&apos;
 &gt;&gt;&gt; db.session.add(admin_role)
 &gt;&gt;&gt; db.session.commit()
@@ -338,6 +338,15 @@ order_by() 根据指定条件对原查询结果进行排序,返回一个新查�
 group_by() 根据指定条件对原查询结果进行分组,返回一个新查询
 </code></pre><p>在查询上应用指定的过滤器后,通过调用 all() 执行查询,以列表的形式返回结果。</p>
 <p>查询执行函数,查表.</p>
+<ul>
+<li>all() 以列表形式返回查询的所有结果</li>
+<li>first() 返回查询的第一个结果，如果没有结果，则返回 None</li>
+<li>first_or_404() 返回查询的第一个结果，如果没有结果，则终止请求，返回 404 错误响应</li>
+<li>get() 返回指定主键对应的行，如果没有对应的行，则返回 None</li>
+<li>get_or_404() 返回指定主键对应的行，如果没找到指定的主键，则终止请求，返回 404 错误响应</li>
+<li>count() 返回查询结果的数量</li>
+<li>paginate() 返回一个 Paginate 对象，它包含指定范围内的结果</li>
+</ul>
 <p>在定义关系时候加上lazy = ‘dynamic’ 延迟查询的进行从而可以在其上添加新的过滤器.</p>
 <h4 id="5-9-在视图函数中操作数据库"><a href="#5-9-在视图函数中操作数据库" class="headerlink" title="5.9 在视图函数中操作数据库"></a>5.9 在视图函数中操作数据库</h4><p>app.py</p>
 <pre><code>@app.route(&apos;/&apos;,methods=[&apos;GET&apos;,&apos;POST&apos;])
@@ -357,13 +366,13 @@ def index():
     return render_template(&apos;index.html&apos;,form=form,name=session.get(&apos;name&apos;),known=session.get(&apos;known&apos;,False))
 </code></pre><p>index.html的模板也做相应修改.</p>
 <h4 id="5-10-启动python-shell自动导入数据库"><a href="#5-10-启动python-shell自动导入数据库" class="headerlink" title="5.10 启动python shell自动导入数据库"></a>5.10 启动python shell自动导入数据库</h4><pre><code>from flask.ext.script import Shell
-#make_shell_context() 函数注册了程序、数据库实例以及模型,因此这些对象能直接导入 shell
+#make_shell_context() 函数注册了程序、数据库实例以及模型,因此这些对象能直接导入flask-script的shell
 def make_shell_context():
     return dict(app=app,db=db,User=User,Role=Role)
 
 manager.add_command(&quot;shell&quot;,Shell(make_context=make_shell_context))
 </code></pre><h4 id="5-11-修改数据库模型"><a href="#5-11-修改数据库模型" class="headerlink" title="5.11 修改数据库模型"></a>5.11 修改数据库模型</h4><p>先删除,再建立,会丢失数据</p>
-<p>migration框架.可以跟踪数据库模型的变化</p>
+<p>migration框架.可以跟踪数据库模型的变化<br>相当于数据库的git，记录变更历程。</p>
 <p>除 了 直 接 使 用 Alembic 之 外,Flask 程 序 还 可 使 用 Flask-Migrate(<a href="http://flask-migrate.readthedocs.org/en/latest/)扩展。这个扩展对" target="_blank" rel="external">http://flask-migrate.readthedocs.org/en/latest/)扩展。这个扩展对</a> Alembic 做了轻量级包装,并集成到 Flask-Script 中,所有操作都通过 Flask-Script 命令完成。</p>
 <p>(venv) $ pip install flask-migrate</p>
 <p>初始化,附加一个db命令用来调用migrate:</p>
@@ -372,9 +381,9 @@ migrate = Migrate(app, db)
 manager.add_command(&apos;db&apos;, MigrateCommand)
 </code></pre><p>在维护数据库迁移之前,要使用 init 子命令创建迁移仓库:</p>
 <pre><code>(venv) $ python hello.py db init
-</code></pre><p>upgrade() 函数把迁移中的改动应用到数据库中, downgrade() 函数则将改动删除。</p>
-<pre><code>(venv) $ python hello.py db upgrade
-</code></pre>
+</code></pre><p>migrate 子命令用来自动创建迁移脚本：<br>    (venv) $ python hello.py db migrate -m “initial migration”</p>
+<p>upgrade() 函数把迁移中的改动应用到数据库中, downgrade() 函数则将改动删除。<br>    (venv) $ python hello.py db upgrade</p>
+
       
     </div>
     
@@ -454,7 +463,7 @@ manager.add_command(&apos;db&apos;, MigrateCommand)
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 leemoispace
+    		&copy; 2017 leemoispace
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

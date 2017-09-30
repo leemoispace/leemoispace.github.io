@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/11/学习flask-3-模板/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="flask 使用模板">
-<meta property="og:updated_time" content="2016-07-02T18:25:51.000Z">
+<meta property="og:updated_time" content="2016-07-03T17:10:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[学习flask]3,模板">
 <meta name="twitter:description" content="flask 使用模板">
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 12px;">ssh</a> <a href="/tags/tools/" style="font-size: 14px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -188,7 +188,7 @@
   
     <div class="article-meta">
       <a href="/2016/04/11/学习flask-3-模板/" class="article-date">
-  	<time datetime="2016-04-11T02:51:23.000Z" itemprop="datePublished">2016-04-11</time>
+  	<time datetime="2016-04-11T01:51:23.000Z" itemprop="datePublished">2016-04-11</time>
 </a>
     </div>
   
@@ -252,13 +252,20 @@
 filter列表见: jinja builtin-filters
 
 #### 3.1.3 控制语句
+这里就看不懂符号的意思了，jinjia2教程：http://docs.jinkan.org/docs/jinja2/
+* 块{% %}
+* 变量{{}}
+* 注释{# #}
+
 jinja提供的控制渲染过程的语句:
 
-{%if user%}
-{%endif%}
+    {%if user%}
+        hello{{user}}!
+    {%endif%}
 
-{% for commetn in comments %}
-{%endfor%}
+    {% for comment in comments %}
+        <li>{{comment}}</li>
+    {%endfor%}
 
 支持宏,类似函数
 
@@ -270,22 +277,30 @@ block标签在基模板中定义的部分在用extends继承后可以修改.
 {{super()}}获取基模板中定义的内容
 
 ### 3.2flask集成bootstrap
+
 pip install flask-bootstrap
 
-app.py
+./app.py
 
     from flask.ext.bootstrap import Bootstrap
     bootstrap=Bootstrap(app)
 
-初始化之后就可以使用包含bootstrap的基模板.
-在html中
+初始化之后就可以使用包含bootstrap的基模板,在html中:
 
     {%extends "bootstrap/base.html"%}
 
+bootstrap的jinjia模板 base.html的路径（venv）是：
+
+    venv/lib/python2.7/site-packages/flask_bootstrap/templates/bootstrap/base.html
+
 导入基模板.用到的bootstrap的元素到其官网看文档.
+http://getbootstrap.com/getting-started/
+http://bootstrap.ninghao.net/getting-started.html
+http://www.runoob.com/bootstrap/bootstrap-intro.html
 
-base.html定义了很多块,都可以在衍生模板中继承
-
+base.html定义了很多块,都可以在衍生模板中继承。
+继承后保留之前模板中的部分
+{{super()}}
 
 
 ### 3.3 自定义404页面
@@ -313,7 +328,7 @@ base.html定义了很多块,都可以在衍生模板中继承
 
 url_for() 函数按照url map中保存的信息返回url字符串
 
-生成绝对路径: url_for(page,_external=True)
+生成完整路径: url_for(page,_external=True)
 
 ### 3.5 静态文件
 加入favcon为例:
@@ -409,7 +424,7 @@ url_for() 函数按照url map中保存的信息返回url字符串
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 leemoispace
+    		&copy; 2017 leemoispace
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

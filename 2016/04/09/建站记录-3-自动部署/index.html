@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/09/建站记录-3-自动部署/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="git hook 和fabric的使用,实现自动化部署.">
-<meta property="og:updated_time" content="2016-07-02T19:43:59.000Z">
+<meta property="og:updated_time" content="2016-07-03T12:18:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[建站记录]3.自动部署">
 <meta name="twitter:description" content="git hook 和fabric的使用,实现自动化部署.">
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 12px;">ssh</a> <a href="/tags/tools/" style="font-size: 14px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -188,7 +188,7 @@
   
     <div class="article-meta">
       <a href="/2016/04/09/建站记录-3-自动部署/" class="article-date">
-  	<time datetime="2016-04-09T16:12:07.000Z" itemprop="datePublished">2016-04-09</time>
+  	<time datetime="2016-04-09T15:12:07.000Z" itemprop="datePublished">2016-04-09</time>
 </a>
     </div>
   
@@ -243,7 +243,10 @@ export PS1=&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;
 </code></pre><p>写入:</p>
 <pre><code>#!/bin/sh
 GIT_WORK_TREE=/home/www/flask_project git checkout -f
-</code></pre><p>现在每次push都会自动执行一次上面的脚本.推送到vps</p>
+
+sudo supervisorctl restart flask_project
+</code></pre><p>如果想要推送后自动更新supervisor就把supervisor的控制命令也加入钩子，但是需要用root身份ssh登录到git，这个在本地项目根目录下.git/config设置。</p>
+<p>现在每次push都会自动执行一次上面的脚本.推送到vps</p>
 <pre><code>$ sudo chmod +x hooks/post-receive
 </code></pre><p>现在在本地开发机的flask应用根目录,vps相当于github,设置这个ssh路径是容易出错的地方:</p>
 <pre><code>$ git init
@@ -257,7 +260,7 @@ $ git remote add production root@&lt;your_ip_or_domain&gt;:/home/git/flask_proje
 $ git remote rm production
 </code></pre><p>这时候，config 里面关键的一行是这样的：</p>
 <pre><code>url = ssh://root@bw:/home/leroy/git/flask_project.git
-</code></pre><p>这就设置完了。</p>
+</code></pre><p>这就设置完了。<br>这里可以同时加入github的ssh连接，一次push到两个地方。</p>
 <p>以后对代码库进行修改后,</p>
 <pre><code>$ git add -A
 $ git commit -am &quot;initial&quot;
@@ -266,7 +269,7 @@ $ git push production master
 $ git push bandwagon master
 </code></pre><p>就部署完毕了,这时候重启一下应用就上线</p>
 <pre><code>$ sudo supervisorctl restart flask_project
-</code></pre><p>补充: 如果没有在virtualenv里安装需要的包,推送后部署会错误,需要自己手动去安装一下</p>
+</code></pre><p>补充: 1.如果没有在virtualenv里安装需要的包,推送后部署会错误,需要自己手动去安装一下。<br>2.这样的设置无法pull只能push。</p>
 <h3 id="Fabric自动化部署脚本"><a href="#Fabric自动化部署脚本" class="headerlink" title="Fabric自动化部署脚本"></a>Fabric自动化部署脚本</h3><p>把这三篇文章的命令放在一个脚本里面,以后就只用改改脚本即可自动化部署.<br>使用方法:<br><a href="https://www.youtube.com/watch?time_continue=133&amp;v=VmcGuKPpWH8" target="_blank" rel="external">视频演示</a><br>把包含所有这三篇文章修改过的文件的整个文件夹,放到全新装完系统的vps上,一键部署:</p>
 <pre><code>$ fab creatve
 </code></pre><p>如果想通过git推送更改:</p>
@@ -513,7 +516,7 @@ configure_git()
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 leemoispace
+    		&copy; 2017 leemoispace
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

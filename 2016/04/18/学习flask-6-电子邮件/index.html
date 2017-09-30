@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/18/学习flask-6-电子邮件/index.html">
 <meta property="og:site_name" content="leemoispace">
 <meta property="og:description" content="flask发送邮件">
-<meta property="og:updated_time" content="2016-05-14T18:59:05.486Z">
+<meta property="og:updated_time" content="2016-07-04T18:22:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习flask-6-电子邮件">
 <meta name="twitter:description" content="flask发送邮件">
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 12px;">ssh</a> <a href="/tags/tools/" style="font-size: 14px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -188,7 +188,7 @@
   
     <div class="article-meta">
       <a href="/2016/04/18/学习flask-6-电子邮件/" class="article-date">
-  	<time datetime="2016-04-18T20:53:42.000Z" itemprop="datePublished">2016-04-18</time>
+  	<time datetime="2016-04-18T19:53:42.000Z" itemprop="datePublished">2016-04-18</time>
 </a>
     </div>
   
@@ -226,15 +226,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>flask发送邮件<br><a id="more"></a></p>
-<h3 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h3><p>虽然 Python 标准库中的 smtplib 包可用在 Flask 程序中发送电子邮件,但包装了 smtplib 的<br>Flask-Mail 扩展能更好地和 Flask 集成。</p>
+<h3 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h3><p>虽然 Python 标准库中的 smtplib 包可用在 Flask 程序中发送电子邮件,但包装了 smtplib 的Flask-Mail 扩展能更好地和 Flask 集成。</p>
 <pre><code>(venv) $ pip install flask-mail
-</code></pre><p>可以设置发送选项:</p>
+</code></pre><p>SMTP——发送邮件服务器。</p>
+<p>可以设置发送选项:</p>
 <pre><code>app.config[&apos;MAIL_SERVER&apos;] = &apos;smtp.googlemail.com&apos;
 app.config[&apos;MAIL_PORT&apos;] = 587
 app.config[&apos;MAIL_USE_TLS&apos;] = True
 app.config[&apos;MAIL_USERNAME&apos;] = os.environ.get(&apos;MAIL_USERNAME&apos;)
 app.config[&apos;MAIL_PASSWORD&apos;] = os.environ.get(&apos;MAIL_PASSWORD&apos;)
-</code></pre><p>千万不要把账户密令直接写入脚本</p>
+</code></pre><p>千万不要把账户密令直接写入脚本，万一开源就泄露了。</p>
 <pre><code>(venv) $ export MAIL_USERNAME=&lt;Gmail username&gt;
 (venv) $ export MAIL_PASSWORD=&lt;Gmail password&gt;
 </code></pre><h3 id="在程序中发送电子邮件"><a href="#在程序中发送电子邮件" class="headerlink" title="在程序中发送电子邮件"></a>在程序中发送电子邮件</h3><p>可以用模板来渲染邮件:</p>
@@ -249,7 +250,7 @@ def send_email(to, subject, template, **kwargs):
 </code></pre><p>例子:每次表单收到新用户名就发邮件</p>
 <p>添加环境变量:</p>
 <pre><code>(venv) $ export FLASKY_ADMIN=&lt;your-email-address&gt;
-</code></pre><h3 id="线程发送电子邮件"><a href="#线程发送电子邮件" class="headerlink" title="线程发送电子邮件"></a>线程发送电子邮件</h3><pre><code>from threading import Thread
+</code></pre><h3 id="用后台线程异步发送电子邮件"><a href="#用后台线程异步发送电子邮件" class="headerlink" title="用后台线程异步发送电子邮件"></a>用后台线程异步发送电子邮件</h3><pre><code>from threading import Thread
 </code></pre><p>很多 Flask 扩展都假设已经存在激活的程序上下文和请求上下文。Flask-Mail 中的 send() 函数使用 current_app ,因此必须激活程序上下文。在不同线程中执行 mail.send() 函数时,程序上下文要使用 app.app_context() 人工创建。</p>
 <pre><code>def send_async_email(app, msg):
     with app.app_context():
@@ -262,7 +263,8 @@ def send_email(to, subject, template, **kwargs):
     thr = Thread(target=send_async_email, args=[app, msg])
     thr.start()
     return thr
-</code></pre><p>程序要发送大量电子邮件时,使用专门发送电子邮件的作业要比给每封邮件都新建一个线程更合适。例如,我们可以把执行 send_async_email() 函数的操作发给 Celery(<a href="http://www.celeryproject.org/)任务队列" target="_blank" rel="external">http://www.celeryproject.org/)任务队列</a></p>
+</code></pre><p>程序要发送大量电子邮件时,使用专门发送电子邮件的作业要比给每封邮件都新建一个线程更合适。例如,我们可以把执行 send_async_email() 函数的操作发给 Celery(<a href="http://www.celeryproject.org/)任务队列。" target="_blank" rel="external">http://www.celeryproject.org/)任务队列。</a></p>
+<h2 id="附加，VPS搭建电子邮件服务器"><a href="#附加，VPS搭建电子邮件服务器" class="headerlink" title="附加，VPS搭建电子邮件服务器"></a>附加，VPS搭建电子邮件服务器</h2><p>小任务，用flask给使用我搭建的类人猿公交服务的用户群发邮件。</p>
 
       
     </div>
@@ -343,7 +345,7 @@ def send_email(to, subject, template, **kwargs):
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 leemoispace
+    		&copy; 2017 leemoispace
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

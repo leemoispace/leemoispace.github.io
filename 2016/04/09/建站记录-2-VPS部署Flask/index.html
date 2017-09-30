@@ -23,7 +23,7 @@ gunicorn: 连接程序和nginx
 supervisor: 管理进程
 flask: 建站框架">
 <meta property="og:image" content="https://raw.githubusercontent.com/realpython/flask-deploy/master/images/localhost2.jpg">
-<meta property="og:updated_time" content="2016-04-15T22:46:00.073Z">
+<meta property="og:updated_time" content="2016-07-03T13:44:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[建站记录]2.VPS部署Flask">
 <meta name="twitter:description" content="主要按照 Kickstarting Flask on Ubuntu - Setup and Deployment
@@ -131,7 +131,7 @@ flask: 建站框架">
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a>
+						<a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/e-mail/" style="font-size: 10px;">e-mail</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/enumerate/" style="font-size: 10px;">enumerate</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/flask/" style="font-size: 20px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/leetcode/" style="font-size: 16px;">leetcode</a> <a href="/tags/linked-list/" style="font-size: 14px;">linked list</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/ssh/" style="font-size: 12px;">ssh</a> <a href="/tags/tools/" style="font-size: 14px;">tools</a> <a href="/tags/vps/" style="font-size: 12px;">vps</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -205,7 +205,7 @@ flask: 建站框架">
   
     <div class="article-meta">
       <a href="/2016/04/09/建站记录-2-VPS部署Flask/" class="article-date">
-  	<time datetime="2016-04-09T13:55:23.000Z" itemprop="datePublished">2016-04-09</time>
+  	<time datetime="2016-04-09T12:55:23.000Z" itemprop="datePublished">2016-04-09</time>
 </a>
     </div>
   
@@ -328,6 +328,10 @@ user = leroy
 $ sudo supervisorctl reread
 $ sudo supervisorctl update
 $ sudo supervisorctl start flask_project
+</code></pre><h1 id="相关问题解决记录："><a href="#相关问题解决记录：" class="headerlink" title="相关问题解决记录："></a>相关问题解决记录：</h1><p>多次问题出在supervisor控制gunicorn上面<br>如果出现问题，杀进程再重启supervisor<br>    $ ps -aux |grep supervisor<br>    $ sudo pkill pid<br>    $ sudo supervisord<br>    $ sudo supervisorctl reload</p>
+<p>问题：出现abnormal termination：<br>    supervisorctl tail <app_name></app_name></p>
+<p>1.如果你的pymongo是安装在virtualenv下的话，你得用virtualenv下的python运行 jobmonitor.py<br>2.权限问题<br>3.python中文编码问题导致gunicorn无法运行：</p>
+<pre><code>#coding:utf-8
 </code></pre>
       
     </div>
@@ -408,7 +412,7 @@ $ sudo supervisorctl start flask_project
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 leemoispace
+    		&copy; 2017 leemoispace
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
