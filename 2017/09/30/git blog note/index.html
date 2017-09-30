@@ -22,7 +22,7 @@ hexo -v        hexo-cli: 1.0.3        os: Darwin 17.0.0 darwin x64        http">
 brew install nodebrew install gitgit init
 npm install hexo-cli -g
 hexo -v        hexo-cli: 1.0.3        os: Darwin 17.0.0 darwin x64        http">
-<meta property="og:updated_time" content="2017-09-30T17:52:26.892Z">
+<meta property="og:updated_time" content="2017-09-30T18:42:31.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leemoispace">
 <meta name="twitter:description" content="gitblog note
@@ -86,7 +86,7 @@ hexo -v        hexo-cli: 1.0.3        os: Darwin 17.0.0 darwin x64        http">
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -220,6 +220,14 @@ hexo -v        hexo-cli: 1.0.3        os: Darwin 17.0.0 darwin x64        http">
 <p>brew install node<br>brew install git<br>git init</p>
 <p>npm install hexo-cli -g</p>
 <p>hexo -v<br>        hexo-cli: 1.0.3<br>        os: Darwin 17.0.0 darwin x64<br>        http_parser: 2.7.0<br>        node: 8.6.0<br>        v8: 6.0.287.53<br>        uv: 1.14.1<br>        zlib: 1.2.11<br>        ares: 1.10.1-DEV<br>        modules: 57<br>        nghttp2: 1.25.0<br>        openssl: 1.0.2l<br>        icu: 59.1<br>        unicode: 9.0<br>        cldr: 31.0.1<br>        tz: 2017b</p>
+<h1 id="重新设置Git"><a href="#重新设置Git" class="headerlink" title="重新设置Git"></a>重新设置Git</h1><p>$ cd ~/.ssh<br>$ ssh-keygen -t rsa -C “邮件地址@youremail.com”</p>
+<p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。</p>
+<p>用文本编辑工具打开id_rsa.pub文件，如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。把公钥贴到github的ssh设置里面。</p>
+<p>$ ssh -T git@github.com</p>
+<p>$ git config –global user.name “你的名字”<br>$ git config –global user.email “your_email@youremail.com”</p>
+<p>已经连上github</p>
+<h1 id="可以发文章了"><a href="#可以发文章了" class="headerlink" title="可以发文章了"></a>可以发文章了</h1><p>因为是在Dropbox中同步源文件，所以直接去博客根目录下面hexo d就可以部署到github上了。</p>
+<p>但是新建文章还是要hexo </p>
 
       
     </div>
@@ -228,6 +236,15 @@ hexo -v        hexo-cli: 1.0.3        os: Darwin 17.0.0 darwin x64        http">
   
     
 <nav id="article-nav">
+  
+    <a href="/2017/09/30/2017-9-30-new-start/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          2017-9-30-new-start
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/10/Bitcoin spider/" id="article-nav-older" class="article-nav-link-wrap">

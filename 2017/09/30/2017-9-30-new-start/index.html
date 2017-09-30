@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>linux_tools | leemoispace</title>
+  <title>2017-9-30-new-start | leemoispace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.">
+  <meta name="description" content="Dubai Mall walter’s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux_tools">
-<meta property="og:url" content="http://yoursite.com/2016/04/11/linux-tools/index.html">
+<meta property="og:title" content="2017-9-30-new-start">
+<meta property="og:url" content="http://yoursite.com/2017/09/30/2017-9-30-new-start/index.html">
 <meta property="og:site_name" content="leemoispace">
-<meta property="og:description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.">
-<meta property="og:updated_time" content="2016-07-05T21:27:49.000Z">
+<meta property="og:description" content="Dubai Mall walter’s">
+<meta property="og:updated_time" content="2017-09-30T18:43:15.901Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux_tools">
-<meta name="twitter:description" content="记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.">
+<meta name="twitter:title" content="2017-9-30-new-start">
+<meta name="twitter:description" content="Dubai Mall walter’s">
   
     <link rel="alternative" href="/atom.xml" title="leemoispace" type="application/atom+xml">
   
@@ -184,11 +184,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-linux-tools" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-2017-9-30-new-start" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/11/linux-tools/" class="article-date">
-  	<time datetime="2016-04-10T20:00:45.000Z" itemprop="datePublished">2016-04-11</time>
+      <a href="/2017/09/30/2017-9-30-new-start/" class="article-date">
+  	<time datetime="2017-09-30T18:42:24.000Z" itemprop="datePublished">2017-09-30</time>
 </a>
     </div>
   
@@ -201,7 +201,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      linux_tools
+      2017-9-30-new-start
     </h1>
   
 
@@ -209,10 +209,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -221,75 +217,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录一些linux上工具的设置和使用.最后目标是重装系统后自动化部署的代码.<br><a id="more"></a></p>
-<h3 id="切换ctrl和caps"><a href="#切换ctrl和caps" class="headerlink" title="切换ctrl和caps"></a>切换ctrl和caps</h3><p>gnome-tweak-tool不管用啊,<br>在~/.bash_profile中加入:</p>
-<pre><code>$setxkbmap -option
-$setxkbmap -option &quot;ctrl:swapcaps&quot;
-</code></pre><p>第一行是恢复默认,第二行是修改.bash_profile只在重启系统后source,而bashrc每次打开shell都会运行.</p>
-<h3 id="shell-bookmark"><a href="#shell-bookmark" class="headerlink" title="shell bookmark"></a>shell bookmark</h3><p>bashmarks</p>
-<p>加入~/.bashrc:</p>
-<pre><code>source ~/.local/bin/bashmarks.sh
-</code></pre><h3 id="shell终端多屏-tmux-terminator"><a href="#shell终端多屏-tmux-terminator" class="headerlink" title="shell终端多屏: tmux terminator"></a>shell终端多屏: tmux terminator</h3><p><a href="http://blog.jobbole.com/87584/" target="_blank" rel="external">http://blog.jobbole.com/87584/</a></p>
-<p>$sudo apt-get install tmux</p>
-<p>$vim ~/.tmux.conf</p>
-<p>启动,直接tmux</p>
-<p>使生效:命令模式（按PREFIX : ，即按下ctrl+b,再输入一个“：”)输入</p>
-<pre><code>source-file ~/.tmux.conf
-</code></pre><p>内容:<br>    #<br>    unbind C-b<br>    set -g prefix C-a</p>
-<pre><code># bind a reload key ctrl+r
-bind R source-file ~/.tmux.conf ; display-message &quot;Config reloaded..&quot;
+        <p>Dubai Mall walter’s</p>
 
-#vim模式
-# Use vim keybindings in copy mode
-setw -g mode-keys vi
-
-#将窗口分为3个部分，方便编程（一个文本编辑、一个编译运行查看运行结果、一个浏览文件系统）.
-#打开utf8 支持
-set -g status-utf8 on
-setw -g utf8 on
-
-# statusbar 自定义，具体可以查看man 文档，非常详细
-set -g display-time 3000
-set -g status-fg blue
-
-new  -s work # 创建一个叫work的seesion（附带有一个window）
-neww ranger #在当前session再创建一个window运行ranger
-selectw -t 0 # 选择第一window
-splitw -h -p 50 -t 0 # 水平切割第一个pane，百分比是50
-splitw -v -p 50 -t 1 # 垂直切割第二个pane，百分比是50
-selectp -t 0 # 选择第一个pane
-</code></pre><p>添加了新的配置，只需要按下 Ctrl-b r 就可以重新加载配置并使新的配置生效，从而免去了开启一个新的会话</p>
-<p>启动自动进入布局:</p>
-<pre><code>$ alias tmux2work=”tmux attach -t work”
-</code></pre><p>以下功能均要先按Ctrl+A(已经修改过,默认是B)</p>
-<p>分隔</p>
-<ul>
-<li>水平分隔 %</li>
-<li>竖直分隔 “</li>
-<li>移动 方向键</li>
-</ul>
-<p>会话</p>
-<ul>
-<li>$tmux new -s name</li>
-<li>会话列表 s</li>
-</ul>
-<p>窗口</p>
-<ul>
-<li>新建窗口 c</li>
-<li>选择窗口 数字键 n p</li>
-<li>关闭 x</li>
-</ul>
-<p>复制</p>
-<ul>
-<li>[</li>
-<li>复制到系统剪贴板:<a href="https://github.com/tmux-plugins/tmux-yank" target="_blank" rel="external">https://github.com/tmux-plugins/tmux-yank</a></li>
-</ul>
-<p>滚屏：</p>
-<ul>
-<li>ctrl+a [</li>
-<li>q退出</li>
-</ul>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><h3 id="ohmyzsh"><a href="#ohmyzsh" class="headerlink" title="ohmyzsh"></a>ohmyzsh</h3>
       
     </div>
     
@@ -298,18 +227,9 @@ selectp -t 0 # 选择第一个pane
     
 <nav id="article-nav">
   
-    <a href="/2016/04/11/学习flask-3-模板/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          [学习flask]3,模板
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/10/学习flask-1-2-整体初步认识/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[学习flask]1,整体初步认识</div>
+    <a href="/2017/09/30/git blog note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -344,7 +264,7 @@ selectp -t 0 # 选择第一个pane
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="linux-tools" data-title="linux_tools" data-url="http://yoursite.com/2016/04/11/linux-tools/"></div>
+	<div class="ds-thread" data-thread-key="2017-9-30-new-start" data-title="2017-9-30-new-start" data-url="http://yoursite.com/2017/09/30/2017-9-30-new-start/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
