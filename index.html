@@ -269,16 +269,23 @@
 brew install git
 git init
 npm install hexo-cli -g
-</code></pre><p>hexo -v<br>        hexo-cli: 1.0.3<br>        os: Darwin 17.0.0 darwin x64<br>        http_parser: 2.7.0<br>        node: 8.6.0<br>        v8: 6.0.287.53<br>        uv: 1.14.1<br>        zlib: 1.2.11<br>        ares: 1.10.1-DEV<br>        modules: 57<br>        nghttp2: 1.25.0<br>        openssl: 1.0.2l<br>        icu: 59.1<br>        unicode: 9.0<br>        cldr: 31.0.1<br>        tz: 2017b</p>
-<h1 id="重新设置Git"><a href="#重新设置Git" class="headerlink" title="重新设置Git"></a>重新设置Git</h1><p>$ cd ~/.ssh<br>$ ssh-keygen -t rsa -C “邮件地址@youremail.com”</p>
-<p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。</p>
+hexo -v
+</code></pre><h1 id="重新设置Git"><a href="#重新设置Git" class="headerlink" title="重新设置Git"></a>重新设置Git</h1><pre><code>$ cd ~/.ssh
+$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;
+</code></pre><p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。</p>
 <p>用文本编辑工具打开id_rsa.pub文件，如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。把公钥贴到github的ssh设置里面。</p>
-<p>$ ssh -T git@github.com</p>
-<p>$ git config –global user.name “你的名字”<br>$ git config –global user.email “your_email@youremail.com”</p>
-<p>已经连上github</p>
+<pre><code>$ ssh -T git@github.com
+
+
+$ git config --global user.name &quot;你的名字&quot;
+$ git config --global user.email &quot;your_email@youremail.com&quot;
+</code></pre><p>已经连上github</p>
 <h1 id="可以发文章了"><a href="#可以发文章了" class="headerlink" title="可以发文章了"></a>可以发文章了</h1><p>因为是在Dropbox中同步网站源文件，所以直接去博客根目录下面hexo d就可以部署到github上了。</p>
-<p>新建文章：<br>hexo n name<br>hexo g<br>hexo d</p>
-<h1 id="同时使用简书作为图床"><a href="#同时使用简书作为图床" class="headerlink" title="同时使用简书作为图床"></a>同时使用简书作为图床</h1><p>简书可以直接剪贴板贴图，然后生成的md可以直接在gitblog 显示图片。</p>
+<p>新建文章：</p>
+<pre><code>hexo n filename
+hexo g
+hexo d
+</code></pre><h1 id="同时使用简书作为图床"><a href="#同时使用简书作为图床" class="headerlink" title="同时使用简书作为图床"></a>同时使用简书作为图床</h1><p>简书可以直接剪贴板贴图，然后生成的md可以直接在gitblog 显示图片。</p>
 
       
     </div>
